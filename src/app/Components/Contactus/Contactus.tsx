@@ -41,7 +41,7 @@ const ContactUs = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await fetch('/api/contact', {
+    const response = await fetch('pages/api/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
