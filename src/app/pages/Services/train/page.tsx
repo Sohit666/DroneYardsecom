@@ -1,4 +1,5 @@
-import Carousel from '../../../Components/Homeitems/Carousel'
+"use client";
+import Carousel from '../../../Components/Homeitems/Carousel';
 import { Container, Typography, Grid, Card, CardMedia, CardContent, Button, Box } from '@mui/material';
 import EmblaCarousel from '../../../Components/embla';
 
@@ -7,16 +8,28 @@ const programs = [
     title: 'Drone Repairing',
     description: 'Learn to repair various types of drones. Our comprehensive training covers hardware and software aspects.',
     image: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    onClick: () => { 
+      // Action for Drone Repairing
+      alert('You clicked on Drone Repairing!'); 
+    }
   },
   {
     title: 'Wander and Fly',
     description: 'Join our adventure program that combines drone flying with breathtaking landscapes. Experience the thrill of flying!',
     image: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    onClick: () => { 
+      // Action for Wander and Fly
+      alert('You clicked on Wander and Fly!'); 
+    }
   },
   {
     title: 'DGCA Pilot License',
     description: 'Get certified to fly drones legally in India. Our course meets DGCA standards and prepares you for the licensing exam.',
     image: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    onClick: () => { 
+      // Action for DGCA Pilot License
+      alert('You clicked on DGCA Pilot License!'); 
+    }
   },
 ];
 
@@ -25,10 +38,10 @@ const DroneyardsSection = () => (
     <Typography variant="h4" gutterBottom align="center">
       Training Programs of Droneyards
     </Typography>
-    <Typography variant="body1" align="center">
+    <Typography variant="body1" align="center" sx={{color:"black"}}>
       At Droneyards, we believe in nurturing the next generation of drone enthusiasts. Our training programs are designed to provide hands-on experience and theoretical knowledge that empower you to excel in the field of drone technology. Whether you&apos;re a beginner or looking to upgrade your skills, we have something for everyone!
     </Typography>
-    <Typography variant="body1" align="center" sx={{ mt: 2 }}>
+    <Typography variant="body1" align="center"  sx={{ mt: 2 , color:"black"}}>
       Our experienced instructors are passionate about sharing their expertise and guiding you through every step of your learning journey. Join us to explore the exciting possibilities that drones offer in various industries, from aerial photography to logistics and beyond!
     </Typography>
   </Box>
@@ -56,7 +69,7 @@ const TrainingPrograms = () => {
                   <Typography variant="body2" color="text.secondary">
                     {program.description}
                   </Typography>
-                  <Button variant="contained" color="primary" sx={{ mt: 2 }}>
+                  <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={program.onClick}>
                     Learn More
                   </Button>
                 </CardContent>
@@ -66,7 +79,7 @@ const TrainingPrograms = () => {
         </Grid>
         <DroneyardsSection />
 
-        <div style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center', margin: '10px', borderStyle: 'solid', borderColor: 'black' }}>
+        <div style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center', margin: '10px', borderStyle: 'solid', borderColor: 'black' , marginBottom:"25px"}}>
           <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center', margin: '10px', borderStyle: 'solid', borderColor: 'black' }}>Gallery</h1>
           <EmblaCarousel />
         </div>
