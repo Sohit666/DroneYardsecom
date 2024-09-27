@@ -9,7 +9,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: white;
     --foreground: #ededed;
   }
 }
@@ -25,3 +25,84 @@ body {
     text-wrap: balance;
   }
 }
+
+
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap");
+@tailwind base;
+
+@layer base {
+  html {
+    @apply text-surface;
+    @apply bg-white;
+  }
+  html.dark {
+    @apply text-neutral-50;
+    @apply bg-body-dark;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
+
+p {
+  @apply leading-[1.6];
+}
+
+
+
+
+
+.embla-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; /* Adjust spacing between carousels */
+}
+
+.embla {
+  overflow: hidden;
+  width: 300px; /* Set smaller size for each carousel */
+  height: 200px; /* Adjust the height to maintain aspect ratio */
+  position: relative;
+}
+
+.embla__container {
+  display: flex;
+  user-select: none;
+}
+
+.embla__slide {
+  position: relative;
+  flex: 0 0 100%;
+}
+
+.embla__slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.embla__dots {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.embla__dot {
+  background-color: #ccc;
+  border: none;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.embla__dot.is-selected {
+  background-color: #333;
+}
+
+
+
+
