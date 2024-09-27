@@ -1,16 +1,10 @@
 
-import "./globals.css";
-
-
 import './globals.css'; // Your global CSS and Tailwind styles
 import Navbar from './Components/Navbar';
 import Footer from "./Components/Footer";
 import {
   ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
+ 
 } from '@clerk/nextjs'
 
 

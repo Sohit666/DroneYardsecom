@@ -1,7 +1,9 @@
+
+
 import * as React from 'react';
-import { experimentalStyled as styled } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography'; 
@@ -19,39 +21,7 @@ import C6 from '../../Assets/Parts/fan.jpg';
 import C7 from '../../Assets/Parts/controller.jpg'
 import C8 from '../../Assets/Parts/Frame.webp'
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  position: 'relative',
-  overflow: 'hidden',
-  width: '100%',
-  height: '300px',
-  borderRadius: '8px',
-  boxShadow: theme.shadows[3],
-  transition: 'transform 0.2s',
-  '&:hover': {
-    transform: 'scale(1.05)',
-  },
-}));
 
-const ImageOverlay = styled('div')({
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  color: '#fff',
-  opacity: 0,
-  transition: 'opacity 0.3s ease',
-});
 
 import { StaticImageData } from 'next/image'; 
 
@@ -61,48 +31,6 @@ interface Card {
   buttonText: string;
 }
 
-const cards: Card[] = [
-  {
-    image: C1,
-    title: 'Card Title 1',
-    buttonText: 'Learn More',
-  },
-  {
-    image: C2,
-    title: 'Card Title 2',
-    buttonText: 'View Details',
-  },
-  {
-    image: C3,
-    title: 'Card Title 3',
-    buttonText: 'Explore',
-  },
-  {
-    image: C4,
-    title: 'Card Title 4',
-    buttonText: 'Get Started',
-  },
-  {
-    image: C5,
-    title: 'Card Title 5',
-    buttonText: 'Join Now',
-  },
-  {
-    image: C6,
-    title: 'Card Title 6',
-    buttonText: 'Sign Up',
-  },
-  {
-    image: C7,
-    title: 'Card Title 7',
-    buttonText: 'Sign Up',
-  },
-  {
-    image: C8,
-    title: 'Card Title 8',
-    buttonText: 'Sign Up',
-  },
-];
 
 export default function ResponsiveGrid() {
   return (

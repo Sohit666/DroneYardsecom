@@ -10,7 +10,7 @@ import Box from '@mui/material/Box'; // Import Box from MUI for layout
 import Button from '@mui/material/Button'; // Import Button from MUI
 import CountUp from 'react-countup'; // Import CountUp from react-countup
 import Grid from '@mui/material/Grid'; // Import Grid from MUI
-import CardMedia from '@mui/material/CardMedia'; // Import CardMedia from MUI
+
 import Avatar from '@mui/material/Avatar'; // Import Avatar from MUI
 
 const videos = [

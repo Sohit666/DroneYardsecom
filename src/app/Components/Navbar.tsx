@@ -81,10 +81,10 @@ const Navbar = () => {
                     <Link href="/pages/Services/train" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       Training Programs
                     </Link>
-                    <Link href="/services/service2" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    <Link href="/pages/Services/license" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       License
                     </Link>
-                    <Link href="/services/service3" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       Customizable Drone
                     </Link>
                   </div>
