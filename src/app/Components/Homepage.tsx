@@ -86,8 +86,12 @@ const Homepage = () => {
 
 
 
-      <Box sx={{ flexGrow: 1, mt: 4, textAlign: 'center', color: 'black' }}>
-        <Typography variant="h4" gutterBottom>
+      <Box sx={{ flexGrow: 1, mt: 4, textAlign: 'center', color: 'black' , fontSize:"3rem" }}>
+        <Typography variant="h4" sx={{ 
+          textAlign: 'center', 
+          fontSize: '3rem',    
+          color: 'black',
+        }} gutterBottom>
           Our Feature Products
         </Typography>
 
@@ -206,7 +210,7 @@ const Homepage = () => {
 
 
       <Box sx={{ flexGrow: 1, mt: 4, textAlign: 'center', color: 'black' }}>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" sx={{fontSize:"3rem"}} gutterBottom>
           Our Segments
         </Typography>
 
@@ -298,6 +302,7 @@ const Homepage = () => {
       textAlign: 'center', // Centers the heading
       color: 'black',      // Sets the text color to black
       marginBottom: 2, 
+      fontSize:"3rem"
            // Adds some margin below the heading
     }}
   >

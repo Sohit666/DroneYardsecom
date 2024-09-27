@@ -30,7 +30,8 @@ const CustomerReviews = () => {
 
   return (
     <div className="reviews-section">
-      <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop:'20px',textAlign:'center', margin:"10px", borderStyle:'solid',borderColor:"black" }}>Customer Reviews</h1>
+      <h1 style={{ color: 'black', fontSize: '3rem', marginTop:'20px',textAlign:'center', margin:"10px",borderColor:"black" }}>Customer Reviews</h1>
+      
       <div className="reviews-slider">
         <div className="reviews-container">
           {reviews.map((review) => (

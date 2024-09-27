@@ -49,7 +49,7 @@ const customizableDrones = [
     
         return (
             <Container sx={{marginTop:"30px" , textAlign:"center", fontSize:"0px"}}>
-            <Typography variant="h4"  gutterBottom>
+            <Typography variant="h4"  sx={{color:"black"}} gutterBottom>
                 Customize Your FPV Drone with DroneYards
             </Typography>
             <Typography variant="body1" paragraph>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import Logo from '../Assets/logo.png';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -101,14 +102,29 @@ const Navbar = () => {
                 </button>
                 {dropdownOpen.products && (
                   <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10">
-                    <Link href="/products/product1" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Product 1
+                    <Link href="/pages/products/drones" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Drones
                     </Link>
-                    <Link href="/products/product2" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Product 2
+                    <Link href="/pages/products/motors" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Motors
                     </Link>
-                    <Link href="/products/product3" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Product 3
+                    <Link href="/pages/products/frames" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Frames
+                    </Link>
+                    <Link href="/pages/products/propiler" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Propilers
+                    </Link>
+                    <Link href="/pages/products/fc-chips" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Fc & Chips
+                    </Link>
+                    <Link href="/pages/products/battery" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Batteries
+                    </Link>
+                    <Link href="/pages/products/ele" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Accessories
+                    </Link>
+                    <Link href="/pages/products/controllers" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Controllers
                     </Link>
                   </div>
                 )}
@@ -125,6 +141,11 @@ const Navbar = () => {
 
           {/* Login Button with Clerk functionality */}
           <div className="hidden md:flex items-center">
+            <div className=" cursor-pointer mx-5">
+            <ShoppingCartIcon/>
+
+            </div>
+            
             <SignedOut>
               <SignInButton>
                 <span className="bg-gray-500 px-4 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-600 cursor-pointer">

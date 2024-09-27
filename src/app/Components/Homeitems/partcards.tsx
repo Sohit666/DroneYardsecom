@@ -42,7 +42,7 @@ export default function ResponsiveGrid() {
         gutterBottom 
         sx={{ 
           textAlign: 'center', 
-          fontSize: '2rem',    
+          fontSize: '3rem',    
           color: 'black',
         }}
       >
