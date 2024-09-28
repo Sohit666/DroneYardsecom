@@ -10,24 +10,24 @@ const ContactUs = () => {
 
   const faqs = [
     {
-      question: "How can I contact the Sales team at InsideFPV?",
-      answer: "You can contact the sales team via email at sales@insidefpv.com or call +1234567890.",
+      question: "How can I contact the Sales team at DroneYards",
+      answer: "You can contact the sales team via email at sales@DroneYards.com or call +1234567890.",
     },
     {
-      question: "How should I get in touch regarding partnership opportunities or collaborations with InsideFPV?",
-      answer: "For partnership inquiries, please email partnerships@insidefpv.com.",
+      question: "How should I get in touch regarding partnership opportunities or collaborations with DroneYards",
+      answer: "For partnership inquiries, please email partnerships@DroneYards.com.",
     },
     {
       question: "I have inquiries related to marketing strategies or social media engagements. How can I contact the Marketing team?",
-      answer: "Please contact our marketing team via marketing@insidefpv.com.",
+      answer: "Please contact our marketing team via marketing@DroneYards.com.",
     },
     {
-      question: "Who should I contact for Human Resources (HR) related matters at InsideFPV?",
-      answer: "For HR matters, reach out to hr@insidefpv.com.",
+      question: "Who should I contact for Human Resources (HR) related matters at DroneYards",
+      answer: "For HR matters, reach out to hr@DroneYards.com.",
     },
     {
       question: "Can I send general inquiries or feedback not specified for a specific team?",
-      answer: "Yes, you can email us at support@insidefpv.com for general inquiries.",
+      answer: "Yes, you can email us at support@DroneYards.com for general inquiries.",
     },
     {
       question: "How quickly can I expect a response after sending an email to one of the designated team addresses?",
@@ -43,7 +43,7 @@ const ContactUs = () => {
     },
     {
       question: "If I don’t receive a response within the specified time frame, what should I do?",
-      answer: "You can follow up by emailing support@insidefpv.com or calling our hotline.",
+      answer: "You can follow up by emailing support@DroneYards.com or calling our hotline.",
     },
   ];
 

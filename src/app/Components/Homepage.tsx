@@ -7,6 +7,7 @@ import { Box, Typography, Button, Grid, Card, CardContent, CardActions, CardMedi
 import CustomerReviews from './Homeitems/Customereviews'
 import dimg from '../Assets/Parts/droneimg.png'
 import CountUp from 'react-countup';
+import Three from './three'
 
 
 
@@ -42,6 +43,10 @@ const Homepage = () => {
   return (
     <div>
       <Carousel />
+      <div className='container'>
+      <Three/>
+      </div>
+      
       <Partitems />
 
 
@@ -118,7 +123,7 @@ const Homepage = () => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" variant="contained" color="primary">
+                  <Button size="small" variant="contained" color="primary" sx={{margin:"auto"}}>
                     Buy Now
                   </Button>
                 </CardActions>
@@ -237,7 +242,7 @@ const Homepage = () => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" variant="contained" color="primary">
+                  <Button size="small" variant="contained" color="primary" sx={{margin:"auto"}}>
                     Learn More
                   </Button>
                 </CardActions>

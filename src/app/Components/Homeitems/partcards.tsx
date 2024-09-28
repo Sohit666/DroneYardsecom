@@ -1,15 +1,12 @@
-
-
 import * as React from 'react';
-
 import Box from '@mui/material/Box';
-
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography'; 
 import Image from 'next/image'; 
 import Card from '@mui/material/Card'; 
 import CardContent from '@mui/material/CardContent'; 
+import Link from 'next/link'; // Import Link from Next.js
 
 // Import your custom images
 import C1 from '../../Assets/Parts/Drone.jpg';
@@ -18,10 +15,8 @@ import C3 from '../../Assets/Parts/Frame.png';
 import C4 from '../../Assets/Parts/Motor.png';
 import C5 from '../../Assets/Parts/ele.jpg';
 import C6 from '../../Assets/Parts/fan.jpg';
-import C7 from '../../Assets/Parts/controller.jpg'
-import C8 from '../../Assets/Parts/Frame.webp'
-
-
+import C7 from '../../Assets/Parts/controller.jpg';
+import C8 from '../../Assets/Parts/Frame.webp';
 
 import { StaticImageData } from 'next/image'; 
 
@@ -31,10 +26,20 @@ interface Card {
   buttonText: string;
 }
 
-
 export default function ResponsiveGrid() {
+  const productLinks = [
+    '/pages/products/drones',
+    '/pages/products/battery',
+    '/pages/products/frames',
+    '/pages/products/motors',
+    '/pages/products/ele',
+    '/pages/products/propiler',
+    '/pages/products/controllers',
+    '/pages/products/fc-chips'
+  ];
+
   return (
-    <Box sx={{ flexGrow: 1, marginTop: 5, margin :'20px' }}>
+    <Box sx={{ flexGrow: 1, marginTop: 5, margin: '20px' }}>
       <Typography 
         variant="h5" 
         component="h2" 
@@ -83,7 +88,11 @@ export default function ResponsiveGrid() {
                 }}
               >
                 <Typography variant="h6">Product {index + 1}</Typography>
-                <Button variant="contained" color="primary" sx={{ marginTop: '8px' }}>Buy Now</Button>
+                <Link href={productLinks[index]} passHref>
+                  <Button variant="contained" color="primary" sx={{ marginTop: '8px' }}>
+                    Buy Now
+                  </Button>
+                </Link>
               </CardContent>
             </Card>
           </Grid>

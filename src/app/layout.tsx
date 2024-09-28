@@ -1,28 +1,27 @@
-
+// src/app/layout.tsx
+"use client";
 import './globals.css'; // Your global CSS and Tailwind styles
+
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import Navbar from './Components/Navbar';
-import Footer from "./Components/Footer";
-import {
-  ClerkProvider,
- 
-} from '@clerk/nextjs'
+import Footer from './Components/Footer';
+import { ClerkProvider } from '@clerk/nextjs';
 
-
-export const metadata = {
-  title: 'DroneYards',
-  description: 'Your one-stop shop for drone parts and accessories',
-};
+// Import metadata from the separate file
+import { metadata } from './metdata';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body>
-      <ClerkProvider>
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer/>
+        <ClerkProvider>
+          <Provider store={store}> {/* Wrap the application with Redux Provider */}
+            <Navbar />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+          </Provider>
         </ClerkProvider>
-      
       </body>
     </html>
   );

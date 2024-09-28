@@ -61,7 +61,7 @@ const ContactUs = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Submitted");
+   
     handleOpen();
   };
 

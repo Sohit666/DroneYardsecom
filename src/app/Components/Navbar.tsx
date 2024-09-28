@@ -141,11 +141,13 @@ const Navbar = () => {
 
           {/* Login Button with Clerk functionality */}
           <div className="hidden md:flex items-center">
-            <div className=" cursor-pointer mx-5">
-            <ShoppingCartIcon/>
-
+            <div  className=" cursor-pointer mx-5" >
+              <Link href="/pages/checkout">
+              <ShoppingCartIcon />
+              </Link>
+              
             </div>
-            
+
             <SignedOut>
               <SignInButton>
                 <span className="bg-gray-500 px-4 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-600 cursor-pointer">
@@ -186,89 +188,105 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      {/* Mobile Menu */}
       {isOpen && (
-  <div className="md:hidden">
-    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">
-        Home
-      </Link>
-      <Link href="/pages/about" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">
-        About Us
-      </Link>
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">
+              Home
+            </Link>
+            <Link href="/pages/about" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">
+              About Us
+            </Link>
 
-      {/* Dropdown for Services */}
-      <div className="relative" ref={servicesRef}>
-                <button
-                  onClick={() => toggleDropdown("services")}
-                  className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Services
-                </button>
-                {dropdownOpen.services && (
-                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10">
-                    <Link href="/pages/Services/train" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Training Programs
-                    </Link>
-                    <Link href="/pages/Services/license" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      License
-                    </Link>
-                    <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Customizable Drone
-                    </Link>
-                  </div>
-                )}
+            {/* Dropdown for Services */}
+            <div className="relative" ref={servicesRef}>
+              <button
+                onClick={() => toggleDropdown("services")}
+                className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Services
+              </button>
+              {dropdownOpen.services && (
+                <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10">
+                  <Link href="/pages/Services/train" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Training Programs
+                  </Link>
+                  <Link href="/pages/Services/license" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    License
+                  </Link>
+                  <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Customizable Drone
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Dropdown for Products */}
+            <div className="relative" ref={productsRef}>
+              <button
+                onClick={() => toggleDropdown("products")}
+                className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                Products
+              </button>
+              {dropdownOpen.products && (
+                <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10">
+                  <Link href="/pages/products/drones" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Drones
+                  </Link>
+                  <Link href="/pages/products/motors" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Motors
+                  </Link>
+                  <Link href="/pages/products/frames" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Frames
+                  </Link>
+                  <Link href="/pages/products/propiler" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Propilers
+                  </Link>
+                  <Link href="/pages/products/fc-chips" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Fc & Chips
+                  </Link>
+                  <Link href="/pages/products/battery" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Batteries
+                  </Link>
+                  <Link href="/pages/products/ele" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Accessories
+                  </Link>
+                  <Link href="/pages/products/controllers" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Controllers
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link href="/pages/cilents" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">
+              Our Clients
+            </Link>
+            <Link href="/pages/contactus" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">
+              Contact Us
+            </Link>
+
+            {/* Cart Icon and Login for Mobile */}
+            <div className="flex items-center justify-between mt-4 px-2">
+              <div className=" cursor-pointer">
+                <ShoppingCartIcon />
               </div>
-
-      {/* Dropdown for Products */}
-      <div className="relative" ref={productsRef}>
-                <button
-                  onClick={() => toggleDropdown("products")}
-                  className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Products
-                </button>
-                {dropdownOpen.products && (
-                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10">
-                    <Link href="/pages/products/drones" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Drones
-                    </Link>
-                    <Link href="/pages/products/motors" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Motors
-                    </Link>
-                    <Link href="/pages/products/frames" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Frames
-                    </Link>
-                    <Link href="/pages/products/propiler" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Propilers
-                    </Link>
-                    <Link href="/pages/products/fc-chips" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Fc & Chips
-                    </Link>
-                    <Link href="/pages/products/battery" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Batteries
-                    </Link>
-                    <Link href="/pages/products/ele" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Accessories
-                    </Link>
-                    <Link href="/pages/products/controllers" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Controllers
-                    </Link>
-                  </div>
-                )}
+              <div>
+                <SignedOut>
+                  <SignInButton>
+                    <span className="bg-gray-500 px-4 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-600 cursor-pointer">
+                      Login
+                    </span>
+                  </SignInButton>
+                </SignedOut>
+                <SignedIn>
+                  <UserButton />
+                </SignedIn>
               </div>
-
-      <Link href="/pages/cilents" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">
-        Our Clients
-      </Link>
-      <Link href="/pages/contactus" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">
-        Contact Us
-      </Link>
-    </div>
-  </div>
-)}
-
-
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
