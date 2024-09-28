@@ -3,104 +3,131 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    background-color: #f4f4f9; /* Light background color for overall container */
+    background-color: #f4f4f9; /* Light background color */
+    min-height: 100vh; /* Ensure it covers full height of the viewport */
 }
 
 .form-section, .faq-section, .address-section {
     margin: 20px 0;
-    width: 80%;
+    width: 90%; /* Adjusted for better mobile responsiveness */
     max-width: 800px;
-    background-color: #ffffff; /* Clean white background */
+    background-color: #ffffff; /* White background for sections */
     color: #333333; /* Dark gray text for better readability */
-    padding: 20px;
+    padding: 25px; /* Added more padding for better spacing */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Softer shadow */
 }
 
-.form-section, .faq-section, .address-section h2 {
-   
-    color: black; /* Deep blue color for headings */
-    font-size: 2rem; /* Larger font size for headings */
-    margin-bottom: 20px;
-}
-.address-section, .form-section h2 {
+.form-section h2, .faq-section h2, .address-section h2 {
     text-align: center;
-    color: black; /* Deep blue color for headings */
-    font-size: 2rem; /* Larger font size for headings */
+    color: #1f1f1f; /* Slightly darker for headings */
+    font-size: 2rem; /* Larger font for headings */
     margin-bottom: 20px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    margin: 15px;
-    padding: 10px;
-    border: 1px solid #ddd; /* Lighter border */
-    border-radius: 5px;
+    margin: 15px 0; /* Spaced for better form layout */
+    padding: 10px 0;
 }
 
 label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 1rem; /* Adjusted font size for labels */
-    color: black;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 1.1rem; /* Slightly larger label text */
+    color: #222; /* Slightly darker label */
 }
 
 input, textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 12px;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #f9f9f9; /* Light background for input fields */
-    color: #333333; /* Dark text for readability */
-    font-size: 1rem; /* Increased font size for inputs */
+    background-color: #f9f9f9; /* Lighter background */
+    color: #333333; /* Dark text */
+    font-size: 1rem; /* Clear font size for input fields */
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input:focus, textarea:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(44, 62, 80, 0.5); /* Subtle focus shadow with deep blue tint */
+    border-color: #2c3e50; /* Deep blue focus border */
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.4); /* Softer focus shadow */
+    outline: none; /* Remove default outline */
 }
 
 .submit-btn {
-    padding: 10px 20px;
-    margin-left: 17px;
-    background-color: black; /* Dark blue button for contrast */
-    color: #ffffff; /* White text for clarity */
+    padding: 12px 25px;
+    background-color: black; /* Consistent with modal button */
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.1rem; /* Slightly larger button text */
-    transition: background-color 0.3s;
+    margin-top: 10px;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
 }
 
 .submit-btn:hover {
-    background-color: white;
-    border-style: solid;
+    background-color: white; /* Inverse color scheme on hover */
+    border: 2px solid black;
     color: black;
-    border-color: black;
-}
-
-.faq-item {
-    margin-bottom: 15px;
-    justify-content: center;
-    
-   
-}
-
-.faq-item h4 {
-    margin-bottom: 5px;
-    font-size: 1.2rem; /* Larger FAQ titles */
-    color: black;
-
-}
-.faq-container h2 {
-  text-align: center;
-  font-size: 2rem;
-
 }
 
 .address-section p {
     text-align: center;
     margin: 10px 0; 
-    font-size: 1rem; /* Adjusted font size for address text */
+    font-size: 1rem;
     color: #555555; /* Medium gray for address text */
+}
+
+/* FAQ Styling */
+.faq-item {
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.faq-item h4 {
+    font-size: 1.3rem; /* Larger FAQ titles */
+    color: black;
+    margin-bottom: 8px;
+}
+
+.faq-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Modal Button */
+.modal-btn {
+    background-color: #1f1f1f; /* Consistent with button colors */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-btn:hover {
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .form-section, .faq-section, .address-section {
+        width: 95%; /* Increased width for small screens */
+    }
+    
+    input, textarea {
+        font-size: 0.9rem; /* Adjusted input size for mobile */
+    }
+
+    label {
+        font-size: 1rem; /* Adjusted label size */
+    }
+    
+    .submit-btn {
+        font-size: 1rem; /* Adjusted button size */
+    }
 }

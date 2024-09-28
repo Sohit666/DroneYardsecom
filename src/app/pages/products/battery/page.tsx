@@ -3,7 +3,7 @@ import React from 'react'
 export default function page() {
   return (
     <>
-      <h1 >i'm motor</h1>
+      <h1 >i&apos;m motor</h1>
     </>
   )
 }

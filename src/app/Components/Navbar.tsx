@@ -198,109 +198,65 @@ const Navbar = () => {
       </Link>
 
       {/* Dropdown for Services */}
-      <div className="relative">
-        <button
-          onClick={() => toggleDropdown("services")}
-          className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-        >
-          Services
-        </button>
-        {dropdownOpen.services && (
-          <div className="pl-4">
-            <Link 
-              href="/pages/Services/train" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, services: false })} // Close dropdown on click
-            >
-              Training Programs
-            </Link>
-            <Link 
-              href="/pages/Services/license" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, services: false })} // Close dropdown on click
-            >
-              License
-            </Link>
-            <Link 
-              href="/pages/Services/customizeable" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, services: false })} // Close dropdown on click
-            >
-              Customizable Drone
-            </Link>
-          </div>
-        )}
-      </div>
+      <div className="relative" ref={servicesRef}>
+                <button
+                  onClick={() => toggleDropdown("services")}
+                  className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Services
+                </button>
+                {dropdownOpen.services && (
+                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10">
+                    <Link href="/pages/Services/train" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Training Programs
+                    </Link>
+                    <Link href="/pages/Services/license" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      License
+                    </Link>
+                    <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Customizable Drone
+                    </Link>
+                  </div>
+                )}
+              </div>
 
       {/* Dropdown for Products */}
-      <div className="relative">
-        <button
-          onClick={() => toggleDropdown("products")}
-          className="block w-full text-left px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-        >
-          Products
-        </button>
-        {dropdownOpen.products && (
-          <div className="pl-4">
-            <Link 
-              href="/pages/products/drones" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, products: false })} // Close dropdown on click
-            >
-              Drones
-            </Link>
-            <Link 
-              href="/pages/products/motors" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, products: false })} // Close dropdown on click
-            >
-              Motors
-            </Link>
-            <Link 
-              href="/pages/products/frames" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, products: false })} // Close dropdown on click
-            >
-              Frames
-            </Link>
-            <Link 
-              href="/pages/products/propiler" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, products: false })} // Close dropdown on click
-            >
-              Propilers
-            </Link>
-            <Link 
-              href="/pages/products/fc-chips" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, products: false })} // Close dropdown on click
-            >
-              FC & Chips
-            </Link>
-            <Link 
-              href="/pages/products/battery" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, products: false })} // Close dropdown on click
-            >
-              Batteries
-            </Link>
-            <Link 
-              href="/pages/products/ele" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, products: false })} // Close dropdown on click
-            >
-              Accessories
-            </Link>
-            <Link 
-              href="/pages/products/controllers" 
-              className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700"
-              onClick={() => setDropdownOpen({ ...dropdownOpen, products: false })} // Close dropdown on click
-            >
-              Controllers
-            </Link>
-          </div>
-        )}
-      </div>
+      <div className="relative" ref={productsRef}>
+                <button
+                  onClick={() => toggleDropdown("products")}
+                  className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Products
+                </button>
+                {dropdownOpen.products && (
+                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-10">
+                    <Link href="/pages/products/drones" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Drones
+                    </Link>
+                    <Link href="/pages/products/motors" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Motors
+                    </Link>
+                    <Link href="/pages/products/frames" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Frames
+                    </Link>
+                    <Link href="/pages/products/propiler" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Propilers
+                    </Link>
+                    <Link href="/pages/products/fc-chips" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Fc & Chips
+                    </Link>
+                    <Link href="/pages/products/battery" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Batteries
+                    </Link>
+                    <Link href="/pages/products/ele" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Accessories
+                    </Link>
+                    <Link href="/pages/products/controllers" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Controllers
+                    </Link>
+                  </div>
+                )}
+              </div>
 
       <Link href="/pages/cilents" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">
         Our Clients
