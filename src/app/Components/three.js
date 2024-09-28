@@ -9,65 +9,47 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 const GLBModel = () => {
   const mountRef = useRef(null);
   const droneRef = useRef(null);
-  const [loading, setLoading] = useState(true); // State for loading
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Create a Three.JS scene
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.6, 1000); // Adjusted FOV
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current.appendChild(renderer.domElement);
 
-    // Adjust camera position
-    camera.position.set(0, 2, 10); // Adjust as needed
+    camera.position.set(0, 11, 5); // Adjust based on your model size
 
-    // Add lighting to the scene
     const topLight = new THREE.DirectionalLight(0xffffff, 1);
-    topLight.position.set(500, 500, 500);
-    topLight.castShadow = true;
+    topLight.position.set(0, 10, 7.5);
     scene.add(topLight);
 
-    const ambientLight = new THREE.AmbientLight(0x333333, 1);
+    const ambientLight = new THREE.AmbientLight(0x404040);
     scene.add(ambientLight);
 
-    // Instantiate the loader for the .gltf file
     const loader = new GLTFLoader();
+    loader.load('/models/scene.gltf', (gltf) => {
+      gltf.scene.scale.set(0.03, 0.03, 0.03); // Scale the model
+      scene.add(gltf.scene);
+      droneRef.current = gltf.scene;
+      setLoading(false);
+    }, undefined, (error) => console.error(error));
 
-    loader.load(
-      `/models/scene.gltf`, // Adjust the path accordingly
-      (gltf) => {
-        gltf.scene.scale.set(0.05, 0.05, 0.05); // Adjust scale for better fit
-        scene.add(gltf.scene);
-        droneRef.current = gltf.scene; // Store reference to the drone model
-        setLoading(false); // Set loading to false when model is loaded
-      },
-      (xhr) => {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-
-    // Add OrbitControls to the camera
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true; // Smooth damping for camera controls
-    controls.dampingFactor = 1; // Damping factor
-    controls.enableZoom = true; // Enable zooming
-    controls.maxDistance = 100; // Maximum distance for zooming out
-    controls.minDistance = 13;  // Minimum distance for zooming in
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.25;
+    controls.enableZoom = true;
 
-    // Handle window resizing
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(width, height);
     };
     window.addEventListener('resize', handleResize);
 
-    // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
       controls.update();
@@ -76,9 +58,7 @@ const GLBModel = () => {
 
     animate();
 
-    // Cleanup function
     return () => {
-      // Remove the event listener and the renderer
       window.removeEventListener('resize', handleResize);
       if (mountRef.current) {
         mountRef.current.removeChild(renderer.domElement);

@@ -5,6 +5,7 @@ import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
+import AcUnitTwoToneIcon from '@mui/icons-material/AcUnitTwoTone';
 import Box from '@mui/material/Box'; // Import Box from MUI for layout
 import Button from '@mui/material/Button'; // Import Button from MUI
 import CountUp from 'react-countup'; // Import CountUp from react-countup
@@ -19,7 +20,7 @@ const videos = [
     location: "California, USA",
     link: "/pages/Services/train", // Add a link for the button
   },
-  {
+  {     
     src: "https://www.w3schools.com/html/movie.mp4",
     title: "DGCA Approved License",
     location: "Arizona, USA",
@@ -171,7 +172,7 @@ const About = () => {
                 {video.title}
               </Typography>
               <Typography
-                startDecorator={<LocationOnRoundedIcon />}
+                startDecorator={<AcUnitTwoToneIcon/>}
                 textColor="neutral.300"
               >
                 {video.location}

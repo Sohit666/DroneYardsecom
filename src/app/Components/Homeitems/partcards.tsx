@@ -49,6 +49,7 @@ export default function ResponsiveGrid() {
           textAlign: 'center', 
           fontSize: '3rem',    
           color: 'black',
+          marginTop:"180px"
         }}
       >
         Shop By Type

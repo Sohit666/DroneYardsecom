@@ -52,7 +52,7 @@ const customizableDrones = [
             <Typography variant="h4"  sx={{color:"black"}} gutterBottom>
                 Customize Your FPV Drone with DroneYards
             </Typography>
-            <Typography variant="body1" paragraph>
+            <Typography variant="body1" sx={{color:"black"}} paragraph>
                 At DroneYards, we offer you the facility to make your own customizable FPV drone according to your needs. Check out some of our customizable drones below:
             </Typography>
             <Grid container spacing={4}>

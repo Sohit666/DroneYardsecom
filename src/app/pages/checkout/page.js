@@ -15,9 +15,10 @@ const Checkout = () => {
 
   return (
     <div className="p-4">
-      <h2>Checkout</h2>
+      <h2 style={{ fontSize: "45px", textAlign: "center", margin: "auto" }}>Checkout</h2>
+
       {cartItems.length === 0 ? (
-        <p>Your cart is empty</p>
+        <p style={{ fontSize: "20px", textAlign: "center", margin: "auto" }}>Your cart is empty</p>
       ) : (
         <>
           <h3>Your Order Details:</h3>

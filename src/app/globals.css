@@ -106,3 +106,17 @@ p {
 
 
 
+
+
+
+@media (max-width: 768px) {
+  .container {
+    height: 300px; /* Adjust the height for mobile */
+  }
+}
+
+@media (min-width: 769px) {
+  .container {
+    height: 500px; /* Adjust the height for desktop */
+  }
+}
