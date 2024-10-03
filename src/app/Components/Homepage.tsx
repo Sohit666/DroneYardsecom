@@ -7,7 +7,7 @@ import Link from 'next/link';
 import CustomerReviews from './Homeitems/Customereviews'
 import dimg from '../Assets/Parts/droneimg.png'
 import CountUp from 'react-countup';
-import Three from './three'
+import Three from './model3d/homepage'
 
 const featuredProductData = [
   {
@@ -65,7 +65,7 @@ const Homepage = () => {
      
 
 <div className='container'>
-  <div style={{ width: '100%', height: '400px', position: 'relative' }}> {/* Adjust height as needed */}
+  <div style={{ width: '100%', height: '400px', position: 'relative',marginTop:"-50px" }}> {/* Adjust height as needed */}
     <Three />
   </div>
 </div>
@@ -79,7 +79,7 @@ const Homepage = () => {
         justifyContent="space-between"
         alignItems="center"
         mt={4}
-        flexWrap="wrap" // For better responsiveness in smaller screens
+        flexWrap="wrap" 
       >
         {/* Text Section */}
         <Box className="drone-ad-content" textAlign="center" flex="1">
@@ -92,8 +92,8 @@ const Homepage = () => {
             - Flight Time up to 20 mins* -
           </Typography>
           <Box mt={2}>
-            <Button variant="outlined" sx={{ mr: 2 }}>Learn More</Button>
-            <Button variant="contained" color="primary">Order Now</Button>
+            <Button variant="outlined" sx={{ mr: 2,bgcolor:"black", color:"gray" }}>Learn More</Button>
+            <Button variant="contained"   sx={{ bgcolor:"gray", color:"black" }}>Order Now</Button>
           </Box>
         </Box>
 
@@ -103,8 +103,8 @@ const Homepage = () => {
             src={dimg.src}
             alt="BIR V2 Drone"
             style={{
-              width: '100%',  // Increase the width as needed
-              height: 'auto'
+              width: '90%',  
+              height: '80%'
             }}
           />
         </Box>
@@ -140,7 +140,7 @@ const Homepage = () => {
                 </CardContent>
                 <CardActions>
                   <Link href={product.link} style={{ textDecoration: 'none', margin: 'auto' }}>
-                    <Button size="small" variant="contained" color="primary">
+                    <Button size="small" variant="contained" sx={{bgcolor:"black", color:"grey", margin:"auto", padding:"auto"}}>
                       Buy Now
                     </Button>
                   </Link>
@@ -177,7 +177,7 @@ const Homepage = () => {
                 </CardContent>
                 <CardActions>
                   <Link href={segment.link} style={{ textDecoration: 'none', margin: 'auto' }}>
-                    <Button size="small" variant="contained" color="primary">
+                    <Button size="small" variant="contained" sx={{bgcolor:"black", color:"grey", margin:"auto", padding:"auto"}}>
                       Learn More
                     </Button>
                   </Link>
@@ -188,6 +188,10 @@ const Homepage = () => {
         </Grid>
       </Box>
 
+
+
+
+{/* {our Acheivements} */}
       <Box
         sx={{
           display: 'flex',
@@ -199,7 +203,7 @@ const Homepage = () => {
           gap: 4,
           width: '100%',
           borderRadius: '70px',
-          marginTop: '40px',
+          marginTop: '70px',
           marginBottom: '40px'
         }}
       >
@@ -232,6 +236,9 @@ const Homepage = () => {
         ))}
       </Box>
 
+
+
+{/* About Section */}
       <section className="about-us">
         <Typography
           variant="h4"

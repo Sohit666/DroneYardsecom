@@ -8,8 +8,6 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import { ClerkProvider } from '@clerk/nextjs';
 
-// Import metadata from the separate file
-import { metadata } from './metdata';
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (

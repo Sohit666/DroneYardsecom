@@ -12,11 +12,11 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { SelectChangeEvent } from '@mui/material/Select';
+import axios from 'axios';
 
 // Modal styling
-// Modal styling
 const style = {
-  position: 'absolute', // Remove the type assertion here
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -26,7 +26,6 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -39,6 +38,9 @@ const ContactUs = () => {
   });
 
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -50,7 +52,6 @@ const ContactUs = () => {
     });
   };
 
-  // Separate handler for Select component
   const handleSelectChange = (e: SelectChangeEvent<string>) => {
     const { name, value } = e.target;
     setFormData({
@@ -59,10 +60,37 @@ const ContactUs = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-   
-    handleOpen();
+    setLoading(true);
+    setError("");
+
+    try {
+      // Make the API call
+      const response = await axios.post("http://localhost:5000/api/contact", formData);
+      
+      // Log response for debugging
+      console.log(response.data);
+      
+      // Handle success (open modal)
+      handleOpen();
+      
+      // Optionally, reset form data
+      setFormData({
+        name: "",
+        email: "",
+        countryCode: "+91",
+        phone: "",
+        state: "",
+        message: "",
+      });
+    } catch (error) {
+      // Handle error
+      console.error(error);
+      setError("Failed to submit. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -102,7 +130,7 @@ const ContactUs = () => {
                 id="countryCode"
                 name="countryCode"
                 value={formData.countryCode}
-                onChange={handleSelectChange} // Use the new handler here
+                onChange={handleSelectChange}
               >
                 <MenuItem value="+1">+1 (USA)</MenuItem>
                 <MenuItem value="+91">+91 (India)</MenuItem>
@@ -150,14 +178,16 @@ const ContactUs = () => {
 
           {/* Submit Button */}
           <Box display="flex" justifyContent="center" mt={2}>
-    <Button
-      type="submit"
-      variant="contained"
-      sx={{ bgcolor: "black", color: "white", margin:"20px", '&:hover': { bgcolor: 'darkgrey' }}}
-    >
-      Submit
-    </Button>
-  </Box>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ bgcolor: "black", color: "white", margin: "20px", '&:hover': { bgcolor: 'darkgrey' } }}
+              disabled={loading} // Disable button while loading
+            >
+              {loading ? "Submitting..." : "Submit"}
+            </Button>
+          </Box>
+          {error && <Typography color="error">{error}</Typography>}
         </form>
       </div>
 

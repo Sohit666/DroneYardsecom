@@ -12,6 +12,7 @@ import CountUp from 'react-countup'; // Import CountUp from react-countup
 import Grid from '@mui/material/Grid'; // Import Grid from MUI
 import Avatar from '@mui/material/Avatar'; // Import Avatar from MUI
 import Link from 'next/link'; // Import Link from next/link
+import Model from "../../Components/model3d/about"
 
 const videos = [
   {
@@ -94,6 +95,10 @@ const About = () => {
         <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop:'20px',textAlign:'center' }}>Your Content Below</h1>
         <p style={{ color: 'black', fontSize: '1.25rem',  textAlign:'center' }}>This is where your other component content goes.</p>
       </div>
+      <div style={{ marginTop:"-50px", marginBottom:"30px" }}>
+            <Model/>
+          </div>
+    
 
       <Box
         sx={{

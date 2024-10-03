@@ -30,13 +30,12 @@ const CustomerReviews = () => {
 
   return (
     <div className="reviews-section">
-      <h1 style={{ color: 'black', fontSize: '3rem', marginTop:'20px',textAlign:'center', margin:"10px",borderColor:"black" }}>Customer Reviews</h1>
-      
+      <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop:'20px',textAlign:'center', margin:"10px", borderStyle:'solid',borderColor:"black" }}>Customer Reviews</h1>
       <div className="reviews-slider">
         <div className="reviews-container">
           {reviews.map((review) => (
             <div key={review.id} className="review-card">
-              <img src={review.avatar} alt={review.name} className="review-avatar" />
+              <img src={review.avatar} alt={review.name}  className="review-avatar" style={{margin :"auto"}} />
               <h3>{review.name}</h3>
               <p>{review.review}</p>
             </div>
@@ -44,7 +43,7 @@ const CustomerReviews = () => {
           {/* Duplicating the reviews for continuous scroll */}
           {reviews.map((review) => (
             <div key={`${review.id}-duplicate`} className="review-card">
-              <img src={review.avatar} alt={review.name} className="review-avatar" />
+              <img src={review.avatar} alt={review.name} className="review-avatar" style={{margin :"auto"}} />
               <h3>{review.name}</h3>
               <p>{review.review}</p>
             </div>
