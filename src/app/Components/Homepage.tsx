@@ -1,54 +1,47 @@
-"use client"
-import React from 'react'
-import Carousel from './Homeitems/Carousel'
-import Partitems from './Homeitems/partcards'
-import { Box, Typography, Button, Grid, Card, CardContent, CardActions, CardMedia } from '@mui/material'
+"use client";
+import React, { useEffect, useState } from 'react';
+import Carousel from './Homeitems/Carousel';
+import Partitems from './Homeitems/partcards';
+import { Box, Typography, Button, Grid, Card, CardContent, CardActions, CardMedia } from '@mui/material';
 import Link from 'next/link';
-import CustomerReviews from './Homeitems/Customereviews'
-import dimg from '../Assets/Parts/droneimg.png'
+import CustomerReviews from './Homeitems/Customereviews';
+import dimg from '../Assets/Parts/droneimg.png';
 import CountUp from 'react-countup';
-import Three from './model3d/homepage'
+import Three from './model3d/homepage';
 
-const featuredProductData = [
+interface Product {
+  id: number; // Adjust the type according to your API response
+  name: string;
+  desc: string;
+}
+
+// Sample segment data with imported images
+const segmentData = [
   {
-    name: "Product 1",
-    description: "This is the description for Product 1.",
-    image: dimg,
-    link: "/product/product-1" // Change the link according to your routing
+    name: "Aerial Photography",
+    description: "Capture stunning aerial images with our drones.",
+    image: dimg.src, // Using the same image
+    link: "/segments/aerial-photography",
   },
   {
-    name: "Product 2",
-    description: "This is the description for Product 2.",
-    image: dimg,
-    link: "/product/product-2"
+    name: "Drone Racing",
+    description: "Experience the thrill of racing drones.",
+    image: dimg.src, // Using the same image
+    link: "/segments/drone-racing",
   },
   {
-    name: "Product 3",
-    description: "This is the description for Product 3.",
-    image: dimg,
-    link: "/product/product-3"
+    name: "Agricultural Monitoring",
+    description: "Use drones for precision agriculture.",
+    image: dimg.src, // Using the same image
+    link: "/segments/agricultural-monitoring",
   },
 ];
 
-const segmentData = [
-  {
-    name: "Segment 1",
-    description: "Description for Segment 1.",
-    image: dimg,
-    link: "/pages/segments/seg1" // Change the link according to your routing
-  },
-  {
-    name: "Segment 2",
-    description: "Description for Segment 2.",
-    image: dimg,
-    link: "/pages/segments/seg2"
-  },
-  {
-    name: "Segment 3",
-    description: "Description for Segment 3.",
-    image: dimg,
-    link: "/pages/segments/seg3"
-  },
+const featuredImages = [
+  dimg.src, // Assuming this is the same drone image you want to use for featured products
+  dimg.src, // Replace with actual image paths
+  dimg.src,
+  // Add more images as needed
 ];
 
 const statsData = [
@@ -58,18 +51,36 @@ const statsData = [
   { value: 4500, label: 'Shipments Delivered' },
 ];
 
-const Homepage = () => {
+const Homepage: React.FC = () => {
+  const [featuredProductData, setFeaturedProductData] = useState<Product[]>([]);
+
+  // Fetch featured products
+  useEffect(() => {
+    const fetchFeaturedProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/products'); // Update this URL to your API endpoint
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data: Product[] = await response.json(); // Type the response data
+        setFeaturedProductData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchFeaturedProducts();
+  }, []);
+
   return (
     <div>
       <Carousel />
-     
 
-<div className='container'>
-  <div style={{ width: '100%', height: '400px', position: 'relative',marginTop:"-50px" }}> {/* Adjust height as needed */}
-    <Three />
-  </div>
-</div>
-
+      <div className='container'>
+        <div style={{ width: '100%', height: '400px', position: 'relative', marginTop: "-50px" }}>
+          <Three />
+        </div>
+      </div>
 
       <Partitems />
 
@@ -79,7 +90,7 @@ const Homepage = () => {
         justifyContent="space-between"
         alignItems="center"
         mt={4}
-        flexWrap="wrap" 
+        flexWrap="wrap"
       >
         {/* Text Section */}
         <Box className="drone-ad-content" textAlign="center" flex="1">
@@ -92,18 +103,18 @@ const Homepage = () => {
             - Flight Time up to 20 mins* -
           </Typography>
           <Box mt={2}>
-            <Button variant="outlined" sx={{ mr: 2,bgcolor:"black", color:"gray" }}>Learn More</Button>
-            <Button variant="contained"   sx={{ bgcolor:"gray", color:"black" }}>Order Now</Button>
+            <Button variant="outlined" sx={{ mr: 2, bgcolor: "black", color: "gray" }}>Learn More</Button>
+            <Button variant="contained" sx={{ bgcolor: "gray", color: "black" }}>Order Now</Button>
           </Box>
         </Box>
 
         {/* Image Section */}
-        <Box className="drone-ad-image" flex="1" textAlign="right"> {/* Right-aligned image */}
+        <Box className="drone-ad-image" flex="1" textAlign="right">
           <img
             src={dimg.src}
             alt="BIR V2 Drone"
             style={{
-              width: '90%',  
+              width: '90%',
               height: '80%'
             }}
           />
@@ -119,15 +130,15 @@ const Homepage = () => {
           Our Featured Products
         </Typography>
 
-        {/* Grid to hold 3 cards in a row */}
+        {/* Grid to hold products */}
         <Grid container spacing={3} justifyContent="center">
           {featuredProductData.map((product, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid item xs={12} sm={6} md={4} key={product.id}>
               <Card sx={{ maxWidth: 345, margin: 'auto' }}>
                 <CardMedia
                   component="img"
                   height="200"
-                  image={typeof product.image === 'string' ? product.image : product.image.src}
+                  image={featuredImages[index]} // Use the fixed image array
                   alt={product.name}
                 />
                 <CardContent>
@@ -135,12 +146,12 @@ const Homepage = () => {
                     {product.name}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {product.description}
+                    {product.desc}
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Link href={product.link} style={{ textDecoration: 'none', margin: 'auto' }}>
-                    <Button size="small" variant="contained" sx={{bgcolor:"black", color:"grey", margin:"auto", padding:"auto"}}>
+                  <Link href={`/products/${product.id}`} style={{ textDecoration: 'none', margin: 'auto' }}>
+                    <Button size="small" variant="contained" sx={{  bgcolor: "black", color: "white", margin: "auto", padding: "auto" }}>
                       Buy Now
                     </Button>
                   </Link>
@@ -156,7 +167,7 @@ const Homepage = () => {
           Our Segments
         </Typography>
 
-        {/* Grid to hold 3 cards in a row */}
+        {/* Grid to hold segment cards */}
         <Grid container spacing={3} justifyContent="center">
           {segmentData.map((segment, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
@@ -164,7 +175,7 @@ const Homepage = () => {
                 <CardMedia
                   component="img"
                   height="200"
-                  image={typeof segment.image === 'string' ? segment.image : segment.image.src}
+                  image={segment.image} // Use the same image for segments
                   alt={segment.name}
                 />
                 <CardContent>
@@ -177,7 +188,7 @@ const Homepage = () => {
                 </CardContent>
                 <CardActions>
                   <Link href={segment.link} style={{ textDecoration: 'none', margin: 'auto' }}>
-                    <Button size="small" variant="contained" sx={{bgcolor:"black", color:"grey", margin:"auto", padding:"auto"}}>
+                    <Button size="small" variant="contained" sx={{ bgcolor: "black", color: "grey", margin: "auto", padding: "auto" }}>
                       Learn More
                     </Button>
                   </Link>
@@ -188,11 +199,8 @@ const Homepage = () => {
         </Grid>
       </Box>
 
-
-
-
-{/* {our Acheivements} */}
-      <Box
+     {/* {our Acheivements} */}
+     <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-around',
@@ -236,9 +244,7 @@ const Homepage = () => {
         ))}
       </Box>
 
-
-
-{/* About Section */}
+      {/* About Section */}
       <section className="about-us">
         <Typography
           variant="h4"
@@ -267,9 +273,10 @@ const Homepage = () => {
         </Typography>
       </section>
 
+      {/* Customer Reviews Section */}
       <CustomerReviews />
     </div>
-  )
-}
+  );
+};
 
-export default Homepage
+export default Homepage;

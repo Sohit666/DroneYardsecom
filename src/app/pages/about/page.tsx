@@ -95,6 +95,8 @@ const About = () => {
         <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop:'20px',textAlign:'center' }}>Your Content Below</h1>
         <p style={{ color: 'black', fontSize: '1.25rem',  textAlign:'center' }}>This is where your other component content goes.</p>
       </div>
+
+      
       <div style={{ marginTop:"-50px", marginBottom:"30px" }}>
             <Model/>
           </div>
@@ -265,7 +267,7 @@ const About = () => {
         {foundersData.map((founder, index) => (
           <Grid item key={index} xs={12} sm={6} md={4}>
             <Card>
-              <CardCover>
+              <CardCover> 
                 <Avatar src={founder.imageUrl} sx={{ width: 56, height: 56 }} />
               </CardCover>
               <CardContent>
