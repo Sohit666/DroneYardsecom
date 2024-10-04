@@ -6,14 +6,14 @@ import img2 from "../../Assets/bg.png"; // Example for another image
 import img3 from "../../Assets/bg.png"; // Example for a third image
 
 const MyComponent = () => {
-    useEffect(() => {
-        const init = async () => {
-          const { Carousel, initTWE } = await import("tw-elements");
-          initTWE({ Carousel });
-        };
-        init();
-      }, []);
-      
+  useEffect(() => {
+    const init = async () => {
+      const { Carousel, initTWE } = await import("tw-elements");
+      initTWE({ Carousel });
+    };
+    init();
+  }, []);
+
 
   return (
     <div

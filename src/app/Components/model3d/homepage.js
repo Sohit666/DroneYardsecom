@@ -64,8 +64,8 @@ const GLBModel = () => {
     const createLabel = (text, position) => {
       const div = document.createElement('div');
       div.textContent = text;
-      div.style.fontSize = '30px'; 
-      div.style.color = 'Black'; 
+      div.style.fontSize = '30px';
+      div.style.color = 'Black';
       div.style.padding = '5px';
       div.style.borderRadius = '5px';
       const label = new CSS2DObject(div);
@@ -84,7 +84,7 @@ const GLBModel = () => {
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
-      labelRenderer.setSize(width, height); 
+      labelRenderer.setSize(width, height);
     };
     window.addEventListener('resize', handleResize);
 
@@ -100,7 +100,7 @@ const GLBModel = () => {
       }
 
       renderer.render(scene, camera);
-      labelRenderer.render(scene, camera); 
+      labelRenderer.render(scene, camera);
     };
 
     animate();
@@ -109,7 +109,7 @@ const GLBModel = () => {
       window.removeEventListener('resize', handleResize);
       if (mountRef.current) {
         mountRef.current.removeChild(renderer.domElement);
-        mountRef.current.removeChild(labelRenderer.domElement); 
+        mountRef.current.removeChild(labelRenderer.domElement);
       }
     };
   }, []);

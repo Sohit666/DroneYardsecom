@@ -21,7 +21,7 @@ const videos = [
     location: "California, USA",
     link: "/pages/Services/train", // Add a link for the button
   },
-  {     
+  {
     src: "https://www.w3schools.com/html/movie.mp4",
     title: "DGCA Approved License",
     location: "Arizona, USA",
@@ -89,18 +89,18 @@ const About = () => {
           objectFit: 'cover',
         }}
       />
-      
+
       {/* Other content below the video */}
       <div>
-        <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop:'20px',textAlign:'center' }}>Your Content Below</h1>
-        <p style={{ color: 'black', fontSize: '1.25rem',  textAlign:'center' }}>This is where your other component content goes.</p>
+        <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center' }}>Your Content Below</h1>
+        <p style={{ color: 'black', fontSize: '1.25rem', textAlign: 'center' }}>This is where your other component content goes.</p>
       </div>
 
-      
-      <div style={{ marginTop:"-50px", marginBottom:"30px" }}>
-            <Model/>
-          </div>
-    
+
+      <div style={{ marginTop: "-50px", marginBottom: "30px" }}>
+        <Model />
+      </div>
+
 
       <Box
         sx={{
@@ -145,7 +145,7 @@ const About = () => {
         ))}
       </Box>
 
-      <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop:'20px',textAlign:'center' }}>What We Do</h1>
+      <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center' }}>What We Do</h1>
       <Box
         sx={{
           display: 'flex',
@@ -179,7 +179,7 @@ const About = () => {
                 {video.title}
               </Typography>
               <Typography
-                startDecorator={<AcUnitTwoToneIcon/>}
+                startDecorator={<AcUnitTwoToneIcon />}
                 textColor="neutral.300"
               >
                 {video.location}
@@ -212,7 +212,7 @@ const About = () => {
           </video>
         </Card>
 
-        {/* Text Card */} 
+        {/* Text Card */}
         <Card sx={{ flex: 1, backgroundColor: '#ffffff' }}>
           <CardContent>
             <Typography component="div" gutterBottom>
@@ -227,7 +227,7 @@ const About = () => {
         </Card>
       </Box>
 
-      <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop:'20px',textAlign:'center' }}>Our Segments</h1>
+      <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center' }}>Our Segments</h1>
       <Grid container spacing={4} justifyContent="center">
         {cardsData.map((card, index) => (
           <Grid item key={index} xs={12} sm={4}>
@@ -263,28 +263,28 @@ const About = () => {
 
       {/* Founders Section */}
 
-      <div style={{marginBottom:"30px"}}>
+      <div style={{ marginBottom: "30px" }}>
 
-    
-<h1 style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center' }}>Founders</h1>
-<Grid container spacing={4} justifyContent="center">
-  {foundersData.map((founder, index) => (
-    <Grid item key={index} xs={12} sm={6} md={4}>
-      <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', p: 2 }}>
-        <Avatar src={founder.imageUrl} sx={{ width: 80, height: 80, marginRight: 2 }} />
-        <CardContent sx={{ flexGrow: 1 }}>
-          <Typography level="title-md" textColor="#000" sx={{ fontWeight: 'bold' }}>
-            {founder.name}
-          </Typography>
-          <Typography textColor="neutral.500">
-            {founder.message}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Grid>
-  ))}
-</Grid>
-</div>
+
+        <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center' }}>Founders</h1>
+        <Grid container spacing={4} justifyContent="center">
+          {foundersData.map((founder, index) => (
+            <Grid item key={index} xs={12} sm={6} md={4}>
+              <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', p: 2 }}>
+                <Avatar src={founder.imageUrl} sx={{ width: 80, height: 80, marginRight: 2 }} />
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography level="title-md" textColor="#000" sx={{ fontWeight: 'bold' }}>
+                    {founder.name}
+                  </Typography>
+                  <Typography textColor="neutral.500">
+                    {founder.message}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </div>
 
     </>
   );

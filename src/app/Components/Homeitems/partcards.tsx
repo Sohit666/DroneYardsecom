@@ -2,10 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography'; 
-import Image, { StaticImageData } from 'next/image'; 
-import Card from '@mui/material/Card'; 
-import CardContent from '@mui/material/CardContent'; 
+import Typography from '@mui/material/Typography';
+import Image, { StaticImageData } from 'next/image';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import Link from 'next/link'; // Import Link from Next.js
 
 // Import your custom images
@@ -38,21 +38,21 @@ const products: Product[] = [
 export default function ResponsiveGrid() {
   return (
     <Box sx={{ flexGrow: 1, marginTop: 5, margin: '20px' }}>
-      <Typography 
-        variant="h5" 
-        component="h2" 
-        className="shop-by-type" 
-        gutterBottom 
-        sx={{ 
-          textAlign: 'center', 
-          fontSize: '3rem',    
+      <Typography
+        variant="h5"
+        component="h2"
+        className="shop-by-type"
+        gutterBottom
+        sx={{
+          textAlign: 'center',
+          fontSize: '3rem',
           color: 'black',
-          marginTop:"180px"
+          marginTop: "180px"
         }}
       >
         Shop By Type
       </Typography>
-      
+
       <Grid container spacing={2} className="image-cards">
         {products.map((product, index) => (
           <Grid item xs={6} sm={4} md={3} key={index}>
@@ -88,7 +88,7 @@ export default function ResponsiveGrid() {
               >
                 <Typography variant="h6">{product.title}</Typography>
                 <Link href={product.link} passHref>
-                  <Button variant="contained"  sx={{ marginTop: '8px',color:"white", bgcolor:"grey" }}>
+                  <Button variant="contained" sx={{ marginTop: '8px', color: "white", bgcolor: "grey" }}>
                     Buy Now
                   </Button>
                 </Link>

@@ -40,7 +40,7 @@ const ContactUs = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -68,13 +68,13 @@ const ContactUs = () => {
     try {
       // Make the API call
       const response = await axios.post("http://localhost:3000/api/contact", formData);
-      
+
       // Log response for debugging
       console.log(response.data);
-      
+
       // Handle success (open modal)
       handleOpen();
-      
+
       // Optionally, reset form data
       setFormData({
         name: "",

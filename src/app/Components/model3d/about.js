@@ -18,7 +18,7 @@ const GLBModel = () => {
     mountRef.current.appendChild(renderer.domElement);
 
     // Set the camera position to see the model from the front
-    camera.position.set(0, 2, 5); 
+    camera.position.set(0, 2, 5);
 
     const topLight = new THREE.DirectionalLight(0xffffff, 1);
     topLight.position.set(0, 10, 7.5);
@@ -29,7 +29,7 @@ const GLBModel = () => {
 
     const loader = new GLTFLoader();
     loader.load('/models/scene.gltf', (gltf) => {
-      gltf.scene.scale.set(0.02, 0.02, 0.02); 
+      gltf.scene.scale.set(0.02, 0.02, 0.02);
       scene.add(gltf.scene);
       droneRef.current = gltf.scene;
       setLoading(false);

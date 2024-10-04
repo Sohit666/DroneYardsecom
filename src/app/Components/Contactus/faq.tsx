@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import "./Contact.css";
 
 const ContactUs = () => {
@@ -49,7 +49,7 @@ const ContactUs = () => {
 
   return (
     <div className="faq-container">
-   <h2 style={{ color: 'black' }}>FAQs</h2>
+      <h2 style={{ color: 'black' }}>FAQs</h2>
 
       {faqs.map((faq, index) => (
         <div

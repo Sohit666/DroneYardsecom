@@ -53,16 +53,16 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({ children, threshold = 0.5 }
 
   return (
     <motion.div
-    className="card-container"
-    initial="offscreen"
-    whileInView="onscreen"
-    viewport={{ once: true, amount: 0.8 }}
-  >
-    
-    <motion.div className="card" variants={cardVariants}>
-      {children}
+      className="card-container"
+      initial="offscreen"
+      whileInView="onscreen"
+      viewport={{ once: true, amount: 0.8 }}
+    >
+
+      <motion.div className="card" variants={cardVariants}>
+        {children}
+      </motion.div>
     </motion.div>
-  </motion.div>
   );
 };
 
