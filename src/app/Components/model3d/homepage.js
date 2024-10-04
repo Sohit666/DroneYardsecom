@@ -15,8 +15,7 @@ const GLBModel = () => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
-    
-    // Initialize CSS2DRenderer for 2D text labels
+
     const labelRenderer = new CSS2DRenderer();
     labelRenderer.setSize(window.innerWidth, window.innerHeight);
     labelRenderer.domElement.style.position = 'absolute';
@@ -50,18 +49,23 @@ const GLBModel = () => {
       setLoading(false);
     }, undefined, (error) => console.error(error));
 
+    // Initialize OrbitControls
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.25;
-    controls.enableZoom = true;
+    controls.enableDamping = true; // Smooth movement
+    controls.dampingFactor = 0.25; // Damping factor
+    controls.enableZoom = true; // Enable zooming
+    controls.zoomSpeed = 1.0; // Zoom speed
+    controls.enablePan = true; // Allow panning
+    controls.panSpeed = 0.5; // Panning speed
+    controls.minDistance = 5; // Minimum zoom distance
+    controls.maxDistance = 50; // Maximum zoom distance
 
-    // Create text labels
+    // Create labels
     const createLabel = (text, position) => {
       const div = document.createElement('div');
       div.textContent = text;
       div.style.fontSize = '30px'; 
       div.style.color = 'Black'; 
-     // div.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';  Background for readability
       div.style.padding = '5px';
       div.style.borderRadius = '5px';
       const label = new CSS2DObject(div);
@@ -69,10 +73,9 @@ const GLBModel = () => {
       scene.add(label);
     };
 
-    // Position labels with increased gap between them
     const leftLabelPosition = new THREE.Vector3(-7, 0, 0);
     const rightLabelPosition = new THREE.Vector3(7, 0, 0);
- ;   createLabel('Fly High', leftLabelPosition);
+    createLabel('Fly High', leftLabelPosition);
     createLabel('Fly Smart', rightLabelPosition);
 
     const handleResize = () => {
@@ -89,8 +92,7 @@ const GLBModel = () => {
 
     const animate = () => {
       requestAnimationFrame(animate);
-      controls.update();
-
+      controls.update(); // Update controls for damping
       const deltaTime = clock.getDelta();
 
       if (mixerRef.current) {

@@ -1,4 +1,5 @@
 import './CustomerReviews.css'; // Import the CSS for styling
+import Typography from '@mui/material/Typography'; // Import Typography from Material-UI
 
 const CustomerReviews = () => {
   const reviews = [
@@ -30,7 +31,17 @@ const CustomerReviews = () => {
 
   return (
     <div className="reviews-section">
-      <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop:'20px',textAlign:'center', margin:"10px", borderStyle:'solid',borderColor:"black" }}>Customer Reviews</h1>
+     <Typography
+          variant="h4"
+          sx={{
+            textAlign: 'center',
+            color: 'black',
+            marginBottom: 3,
+            fontSize: "3rem"
+          }}
+        >
+          Customer Reviews
+        </Typography>
       <div className="reviews-slider">
         <div className="reviews-container">
           {reviews.map((review) => (

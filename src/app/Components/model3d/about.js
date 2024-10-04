@@ -1,5 +1,3 @@
-// components/GLBModel.js
-
 "use client";
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
@@ -19,7 +17,8 @@ const GLBModel = () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current.appendChild(renderer.domElement);
 
-    camera.position.set(0, 11, 5); // Adjust based on your model size
+    // Set the camera position to see the model from the front
+    camera.position.set(0, 2, 5); 
 
     const topLight = new THREE.DirectionalLight(0xffffff, 1);
     topLight.position.set(0, 10, 7.5);
@@ -30,7 +29,7 @@ const GLBModel = () => {
 
     const loader = new GLTFLoader();
     loader.load('/models/scene.gltf', (gltf) => {
-      gltf.scene.scale.set(0.03, 0.03, 0.03); // Scale the model
+      gltf.scene.scale.set(0.02, 0.02, 0.02); 
       scene.add(gltf.scene);
       droneRef.current = gltf.scene;
       setLoading(false);
@@ -73,7 +72,6 @@ const GLBModel = () => {
           Loading...
         </div>
       )}
-
     </div>
   );
 };

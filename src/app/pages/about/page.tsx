@@ -113,7 +113,7 @@ const About = () => {
           gap: 4,
           width: '100%',
           borderRadius: '70px',
-          marginTop: '20px'
+          marginTop: '-250px'
         }}
       >
         {statsData.map((stat, index) => (
@@ -262,26 +262,30 @@ const About = () => {
       </Grid>
 
       {/* Founders Section */}
-      <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop:'20px',textAlign:'center' }}>Founders</h1>
-      <Grid container spacing={2} justifyContent="center">
-        {foundersData.map((founder, index) => (
-          <Grid item key={index} xs={12} sm={6} md={4}>
-            <Card>
-              <CardCover> 
-                <Avatar src={founder.imageUrl} sx={{ width: 56, height: 56 }} />
-              </CardCover>
-              <CardContent>
-                <Typography level="title-md" textColor="#000">
-                  {founder.name}
-                </Typography>
-                <Typography textColor="neutral.500">
-                  {founder.message}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+
+      <div style={{marginBottom:"30px"}}>
+
+    
+<h1 style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center' }}>Founders</h1>
+<Grid container spacing={4} justifyContent="center">
+  {foundersData.map((founder, index) => (
+    <Grid item key={index} xs={12} sm={6} md={4}>
+      <Card sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', p: 2 }}>
+        <Avatar src={founder.imageUrl} sx={{ width: 80, height: 80, marginRight: 2 }} />
+        <CardContent sx={{ flexGrow: 1 }}>
+          <Typography level="title-md" textColor="#000" sx={{ fontWeight: 'bold' }}>
+            {founder.name}
+          </Typography>
+          <Typography textColor="neutral.500">
+            {founder.message}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+  ))}
+</Grid>
+</div>
+
     </>
   );
 };
