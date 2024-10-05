@@ -26,12 +26,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/pages/Services" className="text-gray-400 hover:text-white transition duration-300">
+                <Link href="/pages/products/drones" className="text-gray-400 hover:text-white transition duration-300">
                   Buy Drones
                 </Link>
               </li>
               <li>
-                <Link href="/pages/Plans" className="text-gray-400 hover:text-white transition duration-300">
+                <Link href="/pages/Services/train" className="text-gray-400 hover:text-white transition duration-300">
                   training Plans
                 </Link>
               </li>
@@ -49,7 +49,7 @@ const Footer = () => {
           {/* Contact Section */}
           <div className="w-full md:w-1/3 mb-6 md:mb-0 md:pl-6"> {/* Added padding-left for horizontal spacing */}
             <h5 className="text-xl font-semibold mb-4">Contact Us</h5>
-            <p className="text-gray-400">New Delhi, India</p>
+            <p className="text-gray-400">Metro Station, D-53, Kaushambi Central Park, <br />near Kaushambi,<br /> Anand Vihar, Kaushambi, Ghaziabad, Uttar Pradesh 201010</p>
             <p className="text-gray-400">Email: info@DroneYards.com</p>
             <p className="text-gray-400">Contact: (+91) 98689-80710 <br />Contact: (+91) 88822-78139</p>
           </div>

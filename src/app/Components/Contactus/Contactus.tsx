@@ -133,8 +133,26 @@ const ContactUs = () => {
                 onChange={handleSelectChange}
               >
                 <MenuItem value="+1">+1 (USA)</MenuItem>
-                <MenuItem value="+91">+91 (India)</MenuItem>
-                <MenuItem value="+44">+44 (UK)</MenuItem>
+<MenuItem value="+91">+91 (India)</MenuItem>
+<MenuItem value="+44">+44 (UK)</MenuItem>
+<MenuItem value="+81">+81 (Japan)</MenuItem>
+<MenuItem value="+49">+49 (Germany)</MenuItem>
+<MenuItem value="+33">+33 (France)</MenuItem>
+<MenuItem value="+39">+39 (Italy)</MenuItem>
+<MenuItem value="+61">+61 (Australia)</MenuItem>
+<MenuItem value="+86">+86 (China)</MenuItem>
+<MenuItem value="+55">+55 (Brazil)</MenuItem>
+<MenuItem value="+27">+27 (South Africa)</MenuItem>
+<MenuItem value="+82">+82 (South Korea)</MenuItem>
+<MenuItem value="+34">+34 (Spain)</MenuItem>
+<MenuItem value="+62">+62 (Indonesia)</MenuItem>
+<MenuItem value="+60">+60 (Malaysia)</MenuItem>
+<MenuItem value="+41">+41 (Switzerland)</MenuItem>
+<MenuItem value="+65">+65 (Singapore)</MenuItem>
+<MenuItem value="+1-345">+1-345 (Cayman Islands)</MenuItem>
+<MenuItem value="+965">+965 (Kuwait)</MenuItem>
+<MenuItem value="+974">+974 (Qatar)</MenuItem>
+
                 {/* Add more country codes as needed */}
               </Select>
             </FormControl>

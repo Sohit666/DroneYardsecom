@@ -112,7 +112,7 @@ const Navbar = () => {
                       Frames
                     </Link>
                     <Link href="/pages/products/propiler" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Propilers
+                    Propellers
                     </Link>
                     <Link href="/pages/products/fc-chips" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       Fc & Chips
