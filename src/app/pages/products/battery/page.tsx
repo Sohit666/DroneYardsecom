@@ -1,43 +1,30 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'; 
+import { useDispatch } from 'react-redux';
 import { Container, Grid, Typography, Button, ButtonGroup, Slider, Box, TextField, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
-import { SelectChangeEvent } from '@mui/material';
-import { addToCart } from '../../../store/cartslice'; 
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  type: string;
-  price: number;
-  image: string;
-}
+import { addToCart } from '../../../store/cartslice';
+import { useFilterProducts } from '../../../hooks/useFilterProducts'; // Import the custom hook
+import { Product } from '../../../types/product';
 
 const ProductsPage = () => {
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [sortOption, setSortOption] = useState<string>('alphabetical');
-  const [priceRange, setPriceRange] = useState<number[]>([0, 100000]); 
-  const [filterName, setFilterName] = useState<string>(''); 
-  const [filterType, setFilterType] = useState<string>(''); 
 
+  // Fetch the products on component mount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/products');
         const data = await response.json();
 
-        const filteredProducts = data.filter((product: Product) => product.type === 'Drones');
-
+        // Filter and map products
+        const filteredProducts = data.filter((product: Product) => product.type === 'Batteries');
         const productsWithImages = filteredProducts.map((product: Product) => ({
           ...product,
           image: `/static/${product.name.replace(' ', '').toLowerCase()}.jpg`,
         }));
 
         setProducts(productsWithImages);
-        setFilteredProducts(productsWithImages);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -46,49 +33,26 @@ const ProductsPage = () => {
     fetchProducts();
   }, []);
 
-  const handleSort = (option: string) => {
-    const sortedProducts = [...filteredProducts];
-
-    if (option === 'alphabetical') {
-      sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (option === 'price') {
-      sortedProducts.sort((a, b) => a.price - b.price);
-    }
-
-    setSortOption(option);
-    setFilteredProducts(sortedProducts);
-  };
-
-  const handlePriceChange = (event: Event, newValue: number | number[]) => {
-    setPriceRange(newValue as number[]);
-  };
-
-  const handleNameFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilterName(event.target.value);
-  };
-
-  const handleTypeFilterChange = (event: SelectChangeEvent<string>) => {
-    setFilterType(event.target.value);
-  };
-
-  useEffect(() => {
-    const filteredByPriceAndType = products.filter(
-      (product) =>
-        product.price >= priceRange[0] &&
-        product.price <= priceRange[1] &&
-        (filterType === '' || product.type === filterType) &&
-        (filterName === '' || product.name.toLowerCase().includes(filterName.toLowerCase()))
-    );
-    setFilteredProducts(filteredByPriceAndType);
-  }, [priceRange, filterType, filterName, products]);
+  // Use the custom hook to filter products
+  const {
+    filteredProducts,
+    sortOption,
+    handleSort,
+    priceRange,
+    handlePriceChange,
+    filterName,
+    handleNameFilterChange,
+    filterType,
+    handleTypeFilterChange,
+  } = useFilterProducts(products);
 
   const handleAddToCart = (product: Product) => {
-    dispatch(addToCart({ 
-      name: product.name, 
-      description: product.description, 
-      price: product.price, 
+    dispatch(addToCart({
+      name: product.name,
+      description: product.description,
+      price: product.price,
       quantity: 1,
-      image: product.image 
+      image: product.image,
     }));
   };
 
@@ -98,27 +62,30 @@ const ProductsPage = () => {
         Batteries
       </Typography>
 
-      <Grid container spacing={2}>
+      <Grid container spacing={4}>
+        {/* Filters Sidebar */}
         <Grid item xs={12} md={3}>
           <Box sx={{ padding: '10px', border: '2px solid black', borderRadius: '8px', backgroundColor: 'white', height: 'auto', marginLeft: "-100px" }}>
             <Typography variant="h6" color="textPrimary" gutterBottom>
               Filters
             </Typography>
 
+            {/* Name Filter */}
             <TextField
               label="Search by Name"
               variant="outlined"
               fullWidth
               value={filterName}
-              onChange={handleNameFilterChange}
+              onChange={(e) => handleNameFilterChange(e.target.value)}
               sx={{ marginBottom: '20px' }}
             />
 
+            {/* Type Filter */}
             <FormControl fullWidth sx={{ marginBottom: '20px' }}>
               <InputLabel>Filter by Type</InputLabel>
               <Select
                 value={filterType}
-                onChange={handleTypeFilterChange}
+                onChange={(e) => handleTypeFilterChange(e.target.value)}
                 label="Filter by Type"
               >
                 <MenuItem value="">All</MenuItem>
@@ -130,10 +97,11 @@ const ProductsPage = () => {
               </Select>
             </FormControl>
 
+            {/* Price Range Slider */}
             <Typography gutterBottom>Price Range</Typography>
             <Slider
               value={priceRange}
-              onChange={handlePriceChange}
+              onChange={(e, newValue) => handlePriceChange(newValue as number[])}
               valueLabelDisplay="auto"
               min={0}
               max={100000}
@@ -143,6 +111,7 @@ const ProductsPage = () => {
               ₹{priceRange[0]} - ₹{priceRange[1]}
             </Typography>
 
+            {/* Sorting Buttons */}
             <Typography gutterBottom sx={{ marginTop: '20px' }}>Sort By</Typography>
             <ButtonGroup variant="contained" fullWidth>
               <Button
@@ -169,8 +138,9 @@ const ProductsPage = () => {
           </Box>
         </Grid>
 
+        {/* Products List */}
         <Grid item xs={12} md={9}>
-          <Grid container spacing={2}>
+          <Grid container spacing={4}>
             {filteredProducts.length > 0 ? (
               filteredProducts.map((product) => (
                 <Grid item xs={12} sm={6} md={4} key={product.id}>
@@ -202,8 +172,8 @@ const ProductsPage = () => {
                     </Typography>
                     <Button
                       variant="contained"
-                      onClick={() => handleAddToCart(product)} 
-                      sx={{ marginTop: '10px', backgroundColor: 'black', color: 'white', width: '100%' }} // Full width for buttons
+                      onClick={() => handleAddToCart(product)}
+                      sx={{ marginTop: '10px', backgroundColor: 'black', color: 'white' }}
                     >
                       Buy
                     </Button>
@@ -211,7 +181,7 @@ const ProductsPage = () => {
                 </Grid>
               ))
             ) : (
-              <Typography variant="h6" color="textSecondary" align="center">
+              <Typography variant="h6" color="textSecondary" style={{marginLeft:"225px", marginTop:"20px"}} >
                 No products found
               </Typography>
             )}

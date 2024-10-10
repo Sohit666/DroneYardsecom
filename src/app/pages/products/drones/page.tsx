@@ -1,45 +1,30 @@
 "use client";
-
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Container, Grid, Typography, Button, ButtonGroup, Slider, Box, TextField, MenuItem, Select, InputLabel, FormControl, Popper, Fade } from '@mui/material';
-import { SelectChangeEvent } from '@mui/material';
+import { Container, Grid, Typography, Button, ButtonGroup, Slider, Box, TextField, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import { addToCart } from '../../../store/cartslice';
-
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  type: string;
-  price: number;
-  image: string;
-}
+import { useFilterProducts } from '../../../hooks/useFilterProducts'; // Import the custom hook
+import { Product } from '../../../types/product';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Product[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [sortOption, setSortOption] = useState<string>('alphabetical');
-  const [priceRange, setPriceRange] = useState<number[]>([0, 100000]);
-  const [filterName, setFilterName] = useState<string>('');
-  const [filterType, setFilterType] = useState<string>('');
 
-  // Popper state
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [open, setOpen] = useState(false);
-
+  // Fetch the products on component mount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/products');
         const data = await response.json();
+
+        // Filter and map products
         const filteredProducts = data.filter((product: Product) => product.type === 'Drones');
         const productsWithImages = filteredProducts.map((product: Product) => ({
           ...product,
           image: `/static/${product.name.replace(' ', '').toLowerCase()}.jpg`,
         }));
+
         setProducts(productsWithImages);
-        setFilteredProducts(productsWithImages);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -48,68 +33,37 @@ const ProductsPage = () => {
     fetchProducts();
   }, []);
 
-  const handleSort = (option: string) => {
-    const sortedProducts = [...filteredProducts];
-    if (option === 'alphabetical') {
-      sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (option === 'price') {
-      sortedProducts.sort((a, b) => a.price - b.price);
-    }
-    setSortOption(option);
-    setFilteredProducts(sortedProducts);
-  };
+  // Use the custom hook to filter products
+  const {
+    filteredProducts,
+    sortOption,
+    handleSort,
+    priceRange,
+    handlePriceChange,
+    filterName,
+    handleNameFilterChange,
+    filterType,
+    handleTypeFilterChange,
+  } = useFilterProducts(products);
 
-  const handlePriceChange = (event: Event, newValue: number | number[]) => {
-    setPriceRange(newValue as number[]);
-  };
-
-  const handleNameFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilterName(event.target.value);
-  };
-
-  const handleTypeFilterChange = (event: SelectChangeEvent<string>) => {
-    setFilterType(event.target.value);
-  };
-
-  useEffect(() => {
-    const filteredByPriceAndType = products.filter(
-      (product) =>
-        product.price >= priceRange[0] &&
-        product.price <= priceRange[1] &&
-        (filterType === '' || product.type === filterType) &&
-        (filterName === '' || product.name.toLowerCase().includes(filterName.toLowerCase()))
-    );
-    setFilteredProducts(filteredByPriceAndType);
-  }, [priceRange, filterType, filterName, products]);
-
-  // Function to handle adding to cart
-  const handleAddToCart = (product: Product, event: React.MouseEvent<HTMLElement>) => {
-    dispatch(addToCart({ 
-      name: product.name, 
-      description: product.description, 
-      price: product.price, 
+  const handleAddToCart = (product: Product) => {
+    dispatch(addToCart({
+      name: product.name,
+      description: product.description,
+      price: product.price,
       quantity: 1,
-      image: product.image 
+      image: product.image,
     }));
-
-    // Show the popper
-    setAnchorEl(event.currentTarget); // Set anchor to the button
-    setOpen(true);
-
-    // Close popper after 2 seconds
-    setTimeout(() => {
-      setOpen(false);
-    }, 2000);
   };
 
   return (
     <Container>
       <Typography variant="h4" align="center" gutterBottom color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: '20px', marginTop:"10px" }}>
-        Drone Products
+        Ready To Fly Drones
       </Typography>
 
       <Grid container spacing={4}>
-        {/* Filters Sidebar (Left) */}
+        {/* Filters Sidebar */}
         <Grid item xs={12} md={3}>
           <Box sx={{ padding: '10px', border: '2px solid black', borderRadius: '8px', backgroundColor: 'white', height: 'auto', marginLeft: "-100px" }}>
             <Typography variant="h6" color="textPrimary" gutterBottom>
@@ -122,7 +76,7 @@ const ProductsPage = () => {
               variant="outlined"
               fullWidth
               value={filterName}
-              onChange={handleNameFilterChange}
+              onChange={(e) => handleNameFilterChange(e.target.value)}
               sx={{ marginBottom: '20px' }}
             />
 
@@ -131,7 +85,7 @@ const ProductsPage = () => {
               <InputLabel>Filter by Type</InputLabel>
               <Select
                 value={filterType}
-                onChange={handleTypeFilterChange}
+                onChange={(e) => handleTypeFilterChange(e.target.value)}
                 label="Filter by Type"
               >
                 <MenuItem value="">All</MenuItem>
@@ -147,13 +101,11 @@ const ProductsPage = () => {
             <Typography gutterBottom>Price Range</Typography>
             <Slider
               value={priceRange}
-              onChange={handlePriceChange}
+              onChange={(e, newValue) => handlePriceChange(newValue as number[])}
               valueLabelDisplay="auto"
               min={0}
               max={100000}
-              sx={{
-                color: 'black',
-              }}
+              sx={{ color: 'black' }}
             />
             <Typography variant="body2" color="textSecondary" align="center">
               ₹{priceRange[0]} - ₹{priceRange[1]}
@@ -186,7 +138,7 @@ const ProductsPage = () => {
           </Box>
         </Grid>
 
-        {/* Products List (Right) */}
+        {/* Products List */}
         <Grid item xs={12} md={9}>
           <Grid container spacing={4}>
             {filteredProducts.length > 0 ? (
@@ -220,7 +172,7 @@ const ProductsPage = () => {
                     </Typography>
                     <Button
                       variant="contained"
-                      onClick={(event) => handleAddToCart(product, event)} // Pass event to handleAddToCart
+                      onClick={() => handleAddToCart(product)}
                       sx={{ marginTop: '10px', backgroundColor: 'black', color: 'white' }}
                     >
                       Buy
@@ -229,24 +181,13 @@ const ProductsPage = () => {
                 </Grid>
               ))
             ) : (
-              <Typography variant="h6" color="textSecondary" align="center">
+              <Typography variant="h6" color="textSecondary" style={{marginLeft:"225px", marginTop:"20px"}} >
                 No products found
               </Typography>
             )}
           </Grid>
         </Grid>
       </Grid>
-
-      {/* Popper for Success Message */}
-      <Popper open={open} anchorEl={anchorEl} transition>
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-            <Box sx={{ padding: 1, backgroundColor: 'green', color: 'white', borderRadius: '4px', zIndex: 1 }}>
-              Product added to cart!
-            </Box>
-          </Fade>
-        )}
-      </Popper>
     </Container>
   );
 };

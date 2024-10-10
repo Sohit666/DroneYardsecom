@@ -18,7 +18,7 @@ const ProductsPage = () => {
         const data = await response.json();
 
         // Filter and map products
-        const filteredProducts = data.filter((product: Product) => product.type === 'Frames');
+        const filteredProducts = data.filter((product: Product) => product.type === 'Radio_Store');
         const productsWithImages = filteredProducts.map((product: Product) => ({
           ...product,
           image: `/static/${product.name.replace(' ', '').toLowerCase()}.jpg`,
@@ -59,7 +59,7 @@ const ProductsPage = () => {
   return (
     <Container>
       <Typography variant="h4" align="center" gutterBottom color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: '20px', marginTop:"10px" }}>
-        Frames
+        Radio & Antenna
       </Typography>
 
       <Grid container spacing={4}>

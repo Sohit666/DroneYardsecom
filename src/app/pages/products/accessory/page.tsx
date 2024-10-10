@@ -18,10 +18,11 @@ const ProductsPage = () => {
         const data = await response.json();
 
         // Filter and map products
-        const filteredProducts = data.filter((product: Product) => product.type === 'Frames');
+        const filteredProducts = data.filter((product: Product) => product.type === 'Accessories');
         const productsWithImages = filteredProducts.map((product: Product) => ({
           ...product,
-          image: `/static/${product.name.replace(' ', '').toLowerCase()}.jpg`,
+          // Use the image URL from the product data if available
+          image: product.imageUrl || `/static/${product.name.replace(' ', '').toLowerCase()}.jpg`, // Replace with the actual image URL if available
         }));
 
         setProducts(productsWithImages);
@@ -58,8 +59,8 @@ const ProductsPage = () => {
 
   return (
     <Container>
-      <Typography variant="h4" align="center" gutterBottom color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: '20px', marginTop:"10px" }}>
-        Frames
+      <Typography variant="h4" align="center" gutterBottom color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: '20px', marginTop: "10px" }}>
+        Accessories
       </Typography>
 
       <Grid container spacing={4}>
@@ -181,7 +182,7 @@ const ProductsPage = () => {
                 </Grid>
               ))
             ) : (
-              <Typography variant="h6" color="textSecondary" style={{marginLeft:"225px", marginTop:"20px"}} >
+              <Typography variant="h6" color="textSecondary" style={{ marginLeft: "225px", marginTop: "20px" }} >
                 No products found
               </Typography>
             )}

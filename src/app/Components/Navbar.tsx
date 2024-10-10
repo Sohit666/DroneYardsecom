@@ -121,10 +121,16 @@ const Navbar = () => {
                       Batteries
                     </Link>
                     <Link href="/pages/products/ele" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Accessories
+                      Electronics
                     </Link>
                     <Link href="/pages/products/controllers" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       Controllers
+                    </Link>
+                    <Link href="/pages/products/accessory" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Accessories
+                    </Link>
+                    <Link href="/pages/products/radioAntenna" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Radio Store
                     </Link>
                   </div>
                 )}
