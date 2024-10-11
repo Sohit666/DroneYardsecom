@@ -1,39 +1,55 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Container, Grid, Typography, Button, ButtonGroup, Slider, Box, TextField, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import Link from 'next/link';
+import {
+  Container,
+  Grid,
+  Typography,
+  Button,
+  Box,
+  Slider,
+  TextField,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+} from '@mui/material';
 import { addToCart } from '../../../store/cartslice';
-import { useFilterProducts } from '../../../hooks/useFilterProducts'; // Import the custom hook
+import { useFilterProducts } from '../../../hooks/useFilterProducts';
 import { Product } from '../../../types/product';
+
+const truncateText = (text: string, limit: number) => {
+  if (text.length <= limit) return text;
+  return `${text.substring(0, limit)}...`;
+};
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Product[]>([]);
+  const [selectedColor, setSelectedColor] = useState<string>('');
+  const [weightRange, setWeightRange] = useState<number[]>([0, 10]); // Adjust max weight as needed
+  const [dimensionRange, setDimensionRange] = useState<number[]>([0, 10]); // Adjust max dimensions as needed
 
-  // Fetch the products on component mount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/products');
-        const data = await response.json();
-
-        // Filter and map products
-        const filteredProducts = data.filter((product: Product) => product.type === 'Frames');
-        const productsWithImages = filteredProducts.map((product: Product) => ({
-          ...product,
-          image: `/static/${product.name.replace(' ', '').toLowerCase()}.jpg`,
+        const res = await fetch('http://localhost:3000/api/products');
+        const data = await res.json();
+        const filteredProds = data.filter((prod: Product) => prod.type === 'Frames');
+        const prodsWithImages = filteredProds.map((prod: Product) => ({
+          ...prod,
+          image: (prod.imageUrls ?? [])[0] || '',  // Use the first image URL or set a default if none exist
         }));
-
-        setProducts(productsWithImages);
-      } catch (error) {
-        console.error('Error fetching products:', error);
+        setProducts(prodsWithImages);
+      } catch (err) {
+        console.error('Error fetching products:', err);
       }
     };
 
     fetchProducts();
   }, []);
 
-  // Use the custom hook to filter products
   const {
     filteredProducts,
     sortOption,
@@ -44,32 +60,35 @@ const ProductsPage = () => {
     handleNameFilterChange,
     filterType,
     handleTypeFilterChange,
-  } = useFilterProducts(products);
-
+    handleColorChange, 
+    handleWeightChange, 
+    handleDimensionChange, 
+  } = useFilterProducts(products); 
+  // Update filter handlers
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart({
       name: product.name,
-      description: product.description,
+      description: product.desc,
       price: product.price,
       quantity: 1,
       image: product.image,
+      color: product.colors?.[0] || 'defaultColor',
     }));
   };
 
   return (
-    <Container>
-      <Typography variant="h4" align="center" gutterBottom color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: '20px', marginTop:"10px" }}>
+    <Container maxWidth="lg" sx={{ padding: 2 }}>
+      <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 'bold', mb: 4, mt: 2 }}>
         Frames
       </Typography>
 
       <Grid container spacing={4}>
         {/* Filters Sidebar */}
         <Grid item xs={12} md={3}>
-          <Box sx={{ padding: '10px', border: '2px solid black', borderRadius: '8px', backgroundColor: 'white', height: 'auto', marginLeft: "-100px" }}>
-            <Typography variant="h6" color="textPrimary" gutterBottom>
+          <Box sx={{ padding: 2, border: '2px solid black', borderRadius: 1, bgcolor: 'white' }}>
+            <Typography variant="h6" gutterBottom>
               Filters
             </Typography>
-
             {/* Name Filter */}
             <TextField
               label="Search by Name"
@@ -77,17 +96,12 @@ const ProductsPage = () => {
               fullWidth
               value={filterName}
               onChange={(e) => handleNameFilterChange(e.target.value)}
-              sx={{ marginBottom: '20px' }}
+              sx={{ mb: 3 }}
             />
-
             {/* Type Filter */}
-            <FormControl fullWidth sx={{ marginBottom: '20px' }}>
+            <FormControl fullWidth sx={{ mb: 3 }}>
               <InputLabel>Filter by Type</InputLabel>
-              <Select
-                value={filterType}
-                onChange={(e) => handleTypeFilterChange(e.target.value)}
-                label="Filter by Type"
-              >
+              <Select value={filterType} onChange={(e) => handleTypeFilterChange(e.target.value)}>
                 <MenuItem value="">All</MenuItem>
                 <MenuItem value="Drones">Drones</MenuItem>
                 <MenuItem value="Frames">Frames</MenuItem>
@@ -97,44 +111,62 @@ const ProductsPage = () => {
               </Select>
             </FormControl>
 
+            {/* Color Filter */}
+            <FormControl fullWidth sx={{ mb: 3 }}>
+              <InputLabel>Filter by Color</InputLabel>
+              <Select value={selectedColor} onChange={(e) => handleColorChange(e.target.value)}> {/* Use handleColorChange */}
+                <MenuItem value="">All</MenuItem>
+                <MenuItem value="Red">Red</MenuItem>
+                <MenuItem value="Blue">Blue</MenuItem>
+                <MenuItem value="Green">Green</MenuItem>
+                {/* Add more colors based on your products */}
+              </Select>
+            </FormControl>
+
             {/* Price Range Slider */}
             <Typography gutterBottom>Price Range</Typography>
             <Slider
               value={priceRange}
-              onChange={(e, newValue) => handlePriceChange(newValue as number[])}
+              onChange={(e, newVal) => handlePriceChange(newVal as number[])}
               valueLabelDisplay="auto"
               min={0}
               max={100000}
-              sx={{ color: 'black' }}
+              sx={{ mb: 2 }}
             />
-            <Typography variant="body2" color="textSecondary" align="center">
+            <Typography align="center" variant="body2">
               ₹{priceRange[0]} - ₹{priceRange[1]}
             </Typography>
 
-            {/* Sorting Buttons */}
-            <Typography gutterBottom sx={{ marginTop: '20px' }}>Sort By</Typography>
-            <ButtonGroup variant="contained" fullWidth>
-              <Button
-                onClick={() => handleSort('alphabetical')}
-                sx={{
-                  backgroundColor: sortOption === 'alphabetical' ? 'black' : 'white',
-                  color: sortOption === 'alphabetical' ? 'white' : 'black',
-                  border: '1px solid black',
-                }}
-              >
-                Name
-              </Button>
-              <Button
-                onClick={() => handleSort('price')}
-                sx={{
-                  backgroundColor: sortOption === 'price' ? 'black' : 'white',
-                  color: sortOption === 'price' ? 'white' : 'black',
-                  border: '1px solid black',
-                }}
-              >
-                Price
-              </Button>
-            </ButtonGroup>
+            {/* Weight Range Slider */}
+            <Typography gutterBottom>Weight Range</Typography>
+            <Slider
+              value={weightRange}
+              onChange={(e, newVal) => handleWeightChange(newVal as number[])} // Use handleWeightChange
+              valueLabelDisplay="auto"
+              min={0}
+              max={10} // Adjust max weight as needed
+              sx={{ mb: 2 }}
+            />
+            <Typography align="center" variant="body2">
+              {weightRange[0]} kg - {weightRange[1]} kg
+            </Typography>
+
+            {/* Dimensions Range Slider */}
+            <Typography gutterBottom>Dimensions Range</Typography>
+            <Slider
+              value={dimensionRange}
+              onChange={(e, newVal) => handleDimensionChange(newVal as number[])} // Use handleDimensionChange
+              valueLabelDisplay="auto"
+              min={0}
+              max={10} // Adjust max dimensions as needed
+              sx={{ mb: 2 }}
+            />
+            <Typography align="center" variant="body2">
+              Width: {dimensionRange[0]} cm - {dimensionRange[1]} cm
+            </Typography>
+
+            {/* Sort Buttons */}
+            <Typography gutterBottom sx={{ mt: 3 }}>Sort By</Typography>
           </Box>
         </Grid>
 
@@ -147,33 +179,45 @@ const ProductsPage = () => {
                   <Box
                     sx={{
                       border: '2px solid black',
-                      borderRadius: '8px',
-                      padding: '15px',
-                      backgroundColor: 'white',
+                      borderRadius: 1,
+                      padding: 2,
+                      bgcolor: 'white',
+                      height: '400px', // Fixed height for all cards
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between', // Space items within the card
                       transition: 'transform 0.3s',
-                      '&:hover': {
-                        transform: 'scale(1.05)',
-                      },
+                      '&:hover': { transform: 'scale(1.05)' },
                     }}
                   >
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
-                    />
-                    <Typography variant="h6" color="textPrimary" sx={{ marginTop: '10px', fontWeight: 'bold' }}>
-                      {product.name}
+                    <Link href={`/pages/products/motors/${product.id}`}>
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        style={{
+                          width: '100%',
+                          height: '200px', // Set fixed height for images
+                          borderRadius: 8,
+                          objectFit: 'cover', // Ensure the image covers the box without distortion
+                          cursor: 'pointer',
+                        }}
+                      />
+                    </Link>
+                    <Link href={`/pages/products/motors/${product.id}`}>
+                      <Typography variant="h6" sx={{ mt: 2, fontWeight: 'bold', cursor: 'pointer' }}>
+                        {truncateText(product.name, 15)}
+                      </Typography>
+                    </Link>
+                    <Typography variant="body2" sx={{ mb: 2 }}>
+                      {truncateText(product.desc, 10)} {/* Limit the description to 100 characters */}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" sx={{ marginBottom: '10px' }}>
-                      {product.description}
-                    </Typography>
-                    <Typography variant="body1" color="textPrimary" sx={{ fontWeight: 'bold' }}>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
                       Price: ₹{product.price}
                     </Typography>
                     <Button
                       variant="contained"
                       onClick={() => handleAddToCart(product)}
-                      sx={{ marginTop: '10px', backgroundColor: 'black', color: 'white' }}
+                      sx={{ mt: 2, bgcolor: 'black', color: 'white' }}
                     >
                       Buy
                     </Button>
@@ -181,7 +225,7 @@ const ProductsPage = () => {
                 </Grid>
               ))
             ) : (
-              <Typography variant="h6" color="textSecondary" style={{marginLeft:"225px", marginTop:"20px"}} >
+              <Typography variant="h6" sx={{ marginLeft: "225px", marginTop: "20px" }}>
                 No products found
               </Typography>
             )}

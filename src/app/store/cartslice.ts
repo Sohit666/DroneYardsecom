@@ -7,6 +7,7 @@ interface CartItem {
   price: number;
   quantity: number;
   image: string; // Include image property
+  color: string; // Include color property
 }
 
 // Initial state without loading from localStorage

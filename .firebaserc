@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "droneyards-fcce9"
-  }
+    "default": "droneyards-c5ec6",
+    "staging": "droneyards-c5ec6"
+  },
+  "targets": {},
+  "etags": {}
 }

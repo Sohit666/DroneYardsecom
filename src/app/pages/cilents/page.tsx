@@ -7,7 +7,7 @@ const clients = [
         id: 1,
         name: 'Client A',
         description: 'Description for Client A',
-        logoUrl: 'https://via.placeholder.com/150', // Replace with actual logo URLs
+        logoUrl: 'https://via.placeholder.com/150', 
     },
     {
         id: 2,
