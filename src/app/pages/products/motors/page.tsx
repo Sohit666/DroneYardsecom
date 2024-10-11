@@ -1,39 +1,35 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Container, Grid, Typography, Button, ButtonGroup, Slider, Box, TextField, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import Link from 'next/link';
+import { Container, Grid, Typography, Button, Box, Slider, TextField, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import { addToCart } from '../../../store/cartslice';
-import { useFilterProducts } from '../../../hooks/useFilterProducts'; // Import the custom hook
+import { useFilterProducts } from '../../../hooks/useFilterProducts';
 import { Product } from '../../../types/product';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Product[]>([]);
 
-  // Fetch the products on component mount
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/products');
-        const data = await response.json();
-
-        // Filter and map products
-        const filteredProducts = data.filter((product: Product) => product.type === 'Frames');
-        const productsWithImages = filteredProducts.map((product: Product) => ({
-          ...product,
-          image: `/static/${product.name.replace(' ', '').toLowerCase()}.jpg`,
+        const res = await fetch('http://localhost:3000/api/products');
+        const data = await res.json();
+        const filteredProds = data.filter((prod: Product) => prod.type === 'Motors');
+        const prodsWithImages = filteredProds.map((prod: Product) => ({
+          ...prod,
+          image: `/static/${prod.name.replace(' ', '').toLowerCase()}.jpg`,
         }));
-
-        setProducts(productsWithImages);
-      } catch (error) {
-        console.error('Error fetching products:', error);
+        setProducts(prodsWithImages);
+      } catch (err) {
+        console.error('Error fetching products:', err);
       }
     };
 
     fetchProducts();
   }, []);
 
-  // Use the custom hook to filter products
   const {
     filteredProducts,
     sortOption,
@@ -58,18 +54,17 @@ const ProductsPage = () => {
 
   return (
     <Container>
-      <Typography variant="h4" align="center" gutterBottom color="textPrimary" sx={{ fontWeight: 'bold', marginBottom: '20px', marginTop:"10px" }}>
+      <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 'bold', mb: 4, mt: 2 }}>
         Motors
       </Typography>
 
       <Grid container spacing={4}>
         {/* Filters Sidebar */}
         <Grid item xs={12} md={3}>
-          <Box sx={{ padding: '10px', border: '2px solid black', borderRadius: '8px', backgroundColor: 'white', height: 'auto', marginLeft: "-100px" }}>
-            <Typography variant="h6" color="textPrimary" gutterBottom>
+          <Box sx={{ padding: 2, border: '2px solid black', borderRadius: 1, bgcolor: 'white' }}>
+            <Typography variant="h6" gutterBottom>
               Filters
             </Typography>
-
             {/* Name Filter */}
             <TextField
               label="Search by Name"
@@ -77,17 +72,12 @@ const ProductsPage = () => {
               fullWidth
               value={filterName}
               onChange={(e) => handleNameFilterChange(e.target.value)}
-              sx={{ marginBottom: '20px' }}
+              sx={{ mb: 3 }}
             />
-
             {/* Type Filter */}
-            <FormControl fullWidth sx={{ marginBottom: '20px' }}>
+            <FormControl fullWidth sx={{ mb: 3 }}>
               <InputLabel>Filter by Type</InputLabel>
-              <Select
-                value={filterType}
-                onChange={(e) => handleTypeFilterChange(e.target.value)}
-                label="Filter by Type"
-              >
+              <Select value={filterType} onChange={(e) => handleTypeFilterChange(e.target.value)}>
                 <MenuItem value="">All</MenuItem>
                 <MenuItem value="Drones">Drones</MenuItem>
                 <MenuItem value="Frames">Frames</MenuItem>
@@ -101,40 +91,17 @@ const ProductsPage = () => {
             <Typography gutterBottom>Price Range</Typography>
             <Slider
               value={priceRange}
-              onChange={(e, newValue) => handlePriceChange(newValue as number[])}
+              onChange={(e, newVal) => handlePriceChange(newVal as number[])}
               valueLabelDisplay="auto"
               min={0}
               max={100000}
-              sx={{ color: 'black' }}
             />
-            <Typography variant="body2" color="textSecondary" align="center">
+            <Typography align="center" variant="body2">
               ₹{priceRange[0]} - ₹{priceRange[1]}
             </Typography>
 
-            {/* Sorting Buttons */}
-            <Typography gutterBottom sx={{ marginTop: '20px' }}>Sort By</Typography>
-            <ButtonGroup variant="contained" fullWidth>
-              <Button
-                onClick={() => handleSort('alphabetical')}
-                sx={{
-                  backgroundColor: sortOption === 'alphabetical' ? 'black' : 'white',
-                  color: sortOption === 'alphabetical' ? 'white' : 'black',
-                  border: '1px solid black',
-                }}
-              >
-                Name
-              </Button>
-              <Button
-                onClick={() => handleSort('price')}
-                sx={{
-                  backgroundColor: sortOption === 'price' ? 'black' : 'white',
-                  color: sortOption === 'price' ? 'white' : 'black',
-                  border: '1px solid black',
-                }}
-              >
-                Price
-              </Button>
-            </ButtonGroup>
+            {/* Sort Buttons */}
+            <Typography gutterBottom sx={{ mt: 3 }}>Sort By</Typography>
           </Box>
         </Grid>
 
@@ -147,33 +114,35 @@ const ProductsPage = () => {
                   <Box
                     sx={{
                       border: '2px solid black',
-                      borderRadius: '8px',
-                      padding: '15px',
-                      backgroundColor: 'white',
+                      borderRadius: 1,
+                      padding: 2,
+                      bgcolor: 'white',
                       transition: 'transform 0.3s',
-                      '&:hover': {
-                        transform: 'scale(1.05)',
-                      },
+                      '&:hover': { transform: 'scale(1.05)' },
                     }}
                   >
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      style={{ width: '100%', height: 'auto', borderRadius: '8px' }}
-                    />
-                    <Typography variant="h6" color="textPrimary" sx={{ marginTop: '10px', fontWeight: 'bold' }}>
-                      {product.name}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" sx={{ marginBottom: '10px' }}>
+                    <Link href={`/pages/products/motors/${product.id}`}>
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        style={{ width: '100%', height: 'auto', borderRadius: 8, cursor: 'pointer' }}
+                      />
+                    </Link>
+                    <Link href={`/pages/products/motors/${product.id}`}>
+                      <Typography variant="h6" sx={{ mt: 2, fontWeight: 'bold', cursor: 'pointer' }}>
+                        {product.name}
+                      </Typography>
+                    </Link>
+                    <Typography variant="body2" sx={{ mb: 2 }}>
                       {product.description}
                     </Typography>
-                    <Typography variant="body1" color="textPrimary" sx={{ fontWeight: 'bold' }}>
+                    <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
                       Price: ₹{product.price}
                     </Typography>
                     <Button
                       variant="contained"
                       onClick={() => handleAddToCart(product)}
-                      sx={{ marginTop: '10px', backgroundColor: 'black', color: 'white' }}
+                      sx={{ mt: 2, bgcolor: 'black', color: 'white' }}
                     >
                       Buy
                     </Button>
@@ -181,7 +150,7 @@ const ProductsPage = () => {
                 </Grid>
               ))
             ) : (
-              <Typography variant="h6" color="textSecondary" style={{marginLeft:"225px", marginTop:"20px"}} >
+              <Typography variant="h6" sx={{ marginLeft: "225px", marginTop: "20px" }}>
                 No products found
               </Typography>
             )}
