@@ -1,13 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppDispatch } from './store'; // Adjust the import according to your file structure
+import { Product } from '../types/product'; // Adjust the import based on your folder structure
 
+// Define the CartItem based on Product
 interface CartItem {
+  id: string; // Ensure the id matches the product structure
   name: string;
   description: string;
   price: number;
   quantity: number;
-  image: string; // Include image property
-  color: string; // Include color property
+  image: string;
+  color: string;
+  weight: number; // Added if relevant
+  dimensions: { width: number; height: number; depth: number }; // Adjust based on your product structure
 }
 
 // Initial state without loading from localStorage
@@ -23,7 +28,7 @@ const cartSlice = createSlice({
       state.items = action.payload; // Set the cart items from localStorage
     },
     addToCart(state, action: PayloadAction<CartItem>) {
-      const existingItem = state.items.find(item => item.name === action.payload.name);
+      const existingItem = state.items.find(item => item.id === action.payload.id);
 
       if (existingItem) {
         // Update the quantity of the existing item
@@ -36,8 +41,8 @@ const cartSlice = createSlice({
       // Save the updated cart to local storage
       localStorage.setItem('cart', JSON.stringify(state.items));
     },
-    removeFromCart(state, action: PayloadAction<{ name: string }>) {
-      state.items = state.items.filter(item => item.name !== action.payload.name);
+    removeFromCart(state, action: PayloadAction<{ id: string }>) {
+      state.items = state.items.filter(item => item.id !== action.payload.id);
       
       // Save the updated cart to local storage
       localStorage.setItem('cart', JSON.stringify(state.items));

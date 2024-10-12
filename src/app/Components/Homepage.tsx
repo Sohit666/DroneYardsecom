@@ -9,6 +9,7 @@ import dimg from '../Assets/Parts/droneimg.png';
 import CountUp from 'react-countup';
 import Three from './model3d/homepage';
 import ScrollReveal from './scrollrevel';
+import ServiceCard from "./Homeitems/horizontal"
 
 interface Product {
   _id: string; // Use _id from MongoDB as the unique identifier
@@ -189,6 +190,10 @@ const Homepage: React.FC = () => {
         </Grid>
         </ScrollReveal>
       </Box>
+
+      <ScrollReveal>
+      <ServiceCard />
+      </ScrollReveal>
 
 
 

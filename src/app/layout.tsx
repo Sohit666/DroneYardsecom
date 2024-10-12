@@ -6,7 +6,7 @@ import store from './store/store'; // Adjust the path to your store file
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import { ClerkProvider } from '@clerk/nextjs';
-import { ThemeProvider } from '@mui/material/styles';
+// import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme/theme'; // Import your custom theme
 import CssBaseline from '@mui/material/CssBaseline';
 import { metadata } from './metadata'; // Import the metadata
@@ -35,10 +35,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             <Navbar /> {/* Exclude Navbar from the ThemeProvider */}
             
             {/* ThemeProvider applied only to the main content */}
-            <ThemeProvider theme={theme}>
+            {/* <ThemeProvider theme={theme}> */}
               <CssBaseline /> {/* Ensure consistent styling */}
               <main className="min-h-screen">{children}</main>
-            </ThemeProvider>
+            {/* </ThemeProvider> */}
 
             <Footer /> {/* Exclude Footer from the ThemeProvider */}
           </ClerkProvider>

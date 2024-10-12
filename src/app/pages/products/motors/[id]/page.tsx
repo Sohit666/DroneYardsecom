@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Random from "../../../../Components/random";
 import {
   Container,
   Typography,
@@ -53,17 +54,21 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
     if (product) {
       dispatch(
         addToCart({
+          id: product.id,
           name: product.name,
           description: product.desc,
           price: product.price,
           quantity,
           color: selectedColor,
           image: product.imageUrls?.[0] ?? '',
+          weight: product.weight,
+          dimensions: product.dimensions ?? { width: 0, height: 0, depth: 0 }, 
         })
       );
       console.log('Added to cart:', product.name, quantity, selectedColor);
     }
   };
+  
 
   const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuantity(Number(event.target.value));
@@ -264,6 +269,7 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
           </Box>
         </Grid>
       </Grid>
+      <Random />
 
     </Container>
   );
