@@ -67,12 +67,15 @@ const ProductsPage = () => {
   // Update filter handlers
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart({
+      id: product.id,
       name: product.name,
       description: product.desc,
       price: product.price,
       quantity: 1,
       image: product.image,
       color: product.colors?.[0] || 'defaultColor',
+      weight: product.weight || 0, // Provide a default value if weight is not available
+      dimensions: product.dimensions || { width: 0, height: 0, depth: 0 }, // Provide default dimensions if not available
     }));
   };
 

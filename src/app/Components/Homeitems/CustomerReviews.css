@@ -3,34 +3,30 @@
   text-align: center;
 }
 
-.reviews-heading {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
-}
-
 .reviews-slider {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
 }
 
 .reviews-container {
   display: flex;
-  animation: scroll 20s linear infinite; /* Continuous scroll */
-  /* Removing gap to ensure no spaces */
+  overflow-x: auto; /* Allow horizontal scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  padding: 10px; /* Add some padding */
 }
 
 .review-card {
-  min-width: 300px; /* Adjust this based on your design */
+  min-width: 250px; /* Adjust this for smaller screens */
+  max-width: 300px; /* Ensure max width to maintain layout */
   padding: 20px;
   background-color: #f8f9fa;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-right: 0; /* No margin to ensure seamless transition */
   color: black;
+  margin-right: 20px; /* Space between cards */
+  flex: 0 0 auto; /* Prevent card from shrinking */
 }
 
 .review-avatar {
@@ -40,75 +36,58 @@
   margin-bottom: 10px;
 }
 
-h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
+.arrow-button {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem; /* Increase size of the arrow */
+  cursor: pointer;
+  color: black;
+  transition: color 0.3s;
 }
 
-p {
-  font-size: 14px;
-  color: #555;
+.arrow-button:hover {
+  color: #007bff; /* Change color on hover */
 }
 
-/* Keyframe animation for continuous scrolling */
-@keyframes scroll {
-  0% {
-      transform: translateX(0);
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .review-card {
+    min-width: 200px; /* Smaller width for mobile */
+    margin-right: 10px; /* Reduce margin for smaller screens */
   }
-  100% {
-      transform: translateX(-50%); /* Move half the width of the container */
+
+  .arrow-button {
+    font-size: 1.5rem; /* Smaller arrow buttons */
   }
 }
 
-/* Responsive styles for mobile */
-@media only screen and (max-width: 768px) {
+@media (max-width: 480px) {
   .reviews-section {
-      padding: 20px 10px;
-  }
-
-  .reviews-heading {
-      font-size: 24px;
+    padding: 20px 10px; /* Less padding on mobile */
   }
 
   .review-card {
-      min-width: 250px;
-      padding: 15px;
+    min-width: 150px; /* Minimum width for very small screens */
+    margin-right: 5px; /* Reduce margin for tight spaces */
   }
 
   .review-avatar {
-      width: 60px;
-      height: 60px;
+    width: 60px; /* Smaller avatar */
+    height: 60px; /* Maintain aspect ratio */
   }
 
-  h3 {
-      font-size: 16px;
-  }
-
-  p {
-      font-size: 12px;
+  .arrow-button {
+    font-size: 1.2rem; /* Even smaller buttons */
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .reviews-heading {
-      font-size: 20px;
-  }
+.review-card .MuiCardContent-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .review-card {
-      min-width: 200px;
-      padding: 10px;
-  }
-
-  .review-avatar {
-      width: 50px;
-      height: 50px;
-  }
-
-  h3 {
-      font-size: 14px;
-  }
-
-  p {
-      font-size: 12px;
-  }
+.review-card span {
+  color: gold; /* Change color of stars */
+  font-size: 1.5rem; /* Adjust size as necessary */
 }

@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-wrap justify-between mb-12">
           {/* About Section */}
-          <div className="w-full md:w-1/3 mb-6 md:mb-0 md:pr-6"> {/* Added padding-right for horizontal spacing */}
+          <div className="w-full md:w-1/4 mb-6 md:mb-0 md:pr-6">
             <h5 className="text-xl font-semibold mb-4">About DroneYards</h5>
             <p className="text-gray-400 leading-relaxed">
               At DroneYards, we offer flexible gym memberships on a daily, weekly, or monthly basis. Discover gyms in your area, book sessions, and take your fitness journey to the next level with ease.
@@ -17,7 +17,7 @@ const Footer = () => {
           </div>
 
           {/* Navigation Links */}
-          <div className="w-full md:w-1/3 mb-6 md:mb-0 md:px-20"> {/* Added padding-left and padding-right for horizontal spacing */}
+          <div className="w-full md:w-1/4 mb-6 md:mb-0 md:px-10">
             <h5 className="text-xl font-semibold mb-4">Quick Links</h5>
             <ul className="space-y-2">
               <li>
@@ -31,8 +31,8 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/pages/Services/train" className="text-gray-400 hover:text-white transition duration-300">
-                  training Plans
+                <Link href="/pages/services/train" className="text-gray-400 hover:text-white transition duration-300">
+                  Training Plans
                 </Link>
               </li>
               <li>
@@ -40,18 +40,55 @@ const Footer = () => {
                   Contact Us
                 </Link>
               </li>
-              <li>
+            </ul>
+          </div>
 
+          {/* Policies Links */}
+          <div className="w-full md:w-1/4 mb-6 md:mb-0 md:px-10">
+            <h5 className="text-xl font-semibold mb-4">Policies</h5>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/pages/policies/privacy-policy" className="text-gray-400 hover:text-white transition duration-300">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/pages/policies/refund-policy" className="text-gray-400 hover:text-white transition duration-300">
+                  Refund Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/pages/policies/terms-and-conditions" className="text-gray-400 hover:text-white transition duration-300">
+                  Terms and Conditions
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Contact Section */}
-          <div className="w-full md:w-1/3 mb-6 md:mb-0 md:pl-6"> {/* Added padding-left for horizontal spacing */}
+          <div className="w-full md:w-1/4 mb-6 md:mb-0 md:pl-6">
             <h5 className="text-xl font-semibold mb-4">Contact Us</h5>
-            <p className="text-gray-400">Metro Station, D-53, Kaushambi Central Park, <br />near Kaushambi,<br /> Anand Vihar, Kaushambi, Ghaziabad, Uttar Pradesh 201010</p>
-            <p className="text-gray-400">Email: info@DroneYards.com</p>
-            <p className="text-gray-400">Contact: (+91) 98689-80710 <br />Contact: (+91) 88822-78139</p>
+            <p className="text-gray-400 mb-2">
+              <a
+                href="https://maps.app.goo.gl/aqRArbUHHjio6j5P7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition duration-300"
+              >
+                Metro Station, D-53, Kaushambi Central Park,<br />
+                near Kaushambi,<br /> Anand Vihar, Kaushambi, Ghaziabad, Uttar Pradesh 201010
+              </a>
+            </p>
+            <p className="text-gray-400 mb-2">
+              <a href="mailto:info@DroneYards.com" className="hover:text-white transition duration-300">
+                Email: info@DroneYards.com
+              </a>
+            </p>
+            <p className="text-gray-400">
+              <a href="tel:+919868980710" className="hover:text-white transition duration-300">
+                Contact: (+91) 98689-80710
+              </a>
+            </p>
           </div>
         </div>
 
@@ -74,7 +111,7 @@ const Footer = () => {
           <div className="text-center">
             <p className="text-gray-500 text-sm">
               &copy; {new Date().getFullYear()} DroneYards. All rights reserved.
-            </p>
+            </p>  
           </div>
         </div>
       </div>

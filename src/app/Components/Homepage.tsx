@@ -333,6 +333,8 @@ const Homepage: React.FC = () => {
 
       <ScrollReveal>
       <CustomerReviews />
+   
+
       </ScrollReveal>
       
     </div>
