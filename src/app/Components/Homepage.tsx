@@ -60,7 +60,7 @@ const Homepage: React.FC = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/products'); 
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`); 
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
@@ -81,16 +81,16 @@ const Homepage: React.FC = () => {
   return (
     <div>
 
-      <ScrollReveal >
+      
       <Carousel />
-      </ScrollReveal>
+     
 
       <div className='container'>
-        <div style={{ width: '100%', height: '400px', position: 'relative', marginTop: "-80px" }}>
+        <div style={{ width: '100%', height: '400px', position: 'relative', marginTop: "50px" }}>
           <Three />
         </div>
       </div>
-      <div style={{ marginTop: "400px" }}>
+      <div style={{marginTop: "-200px" }}>
 
         <ScrollReveal >
         <Partitems />
@@ -139,109 +139,176 @@ const Homepage: React.FC = () => {
       </Box>
       </ScrollReveal>
 
-      <Box sx={{ flexGrow: 1, mt: 4, textAlign: 'center', color: 'black', fontSize: "3rem" }}>
+      <Box sx={{ flexGrow: 1, mt: 4, textAlign: 'center', color: 'black' }}>
+  <ScrollReveal>
+    <Typography
+      variant="h4"
+      sx={{
+        fontSize: '3rem',
+        marginTop: "50px",
+        marginBottom: "30px",
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        letterSpacing: '1px',
+      }}
+      gutterBottom
+    >
+      Our Featured Products
+    </Typography>
+  </ScrollReveal>
 
-        <ScrollReveal>
-
-        <Typography variant="h4" sx={{
-          textAlign: 'center',
-          fontSize: '3rem',
-          color: 'black',
-          marginTop:"50px"
-        }} gutterBottom>
-          Our Featured Products
-        </Typography>
-        </ScrollReveal>
-
-        {/* Grid to hold products */}
-        <ScrollReveal>
-        <Grid container spacing={3} justifyContent="center">
-          {productData.map((product, index) => (
-            <Grid item xs={12} sm={6} md={4} key={product._id}>
-              <Card sx={{ maxWidth: 345, margin: 'auto' }}>
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={featuredImages[index % featuredImages.length]} 
-                  alt={product.name}
-                />
-                <CardContent>
-                  <Typography variant="h5" component="div" gutterBottom>
-                    {product.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {product.desc}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Rs. {product.price}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Link href={`/products/${product._id}`} style={{ textDecoration: 'none', margin: 'auto' }}>
-                    <Button size="small" variant="contained" sx={{ bgcolor: "black", color: "white", margin: "auto", padding: "auto" }}>
-                      Buy Now
-                    </Button>
-                  </Link>
-                </CardActions>
-              </Card>
-            </Grid>
-            
-          ))}
+  <ScrollReveal>
+    <Grid container spacing={4} justifyContent="center">
+      {productData.map((product, index) => (
+        <Grid item xs={12} sm={6} md={3} key={product._id}> {/* Changed md={4} to md={3} */}
+          <Card
+            sx={{
+              maxWidth: 300, // Reduced max width from 345 to 300
+              margin: 'auto',
+              borderRadius: '15px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+              transition: 'transform 0.3s, box-shadow 0.3s',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.2)',
+              },
+            }}
+          >
+            <CardMedia
+              component="img"
+              height="200"
+              image={featuredImages[index % featuredImages.length]}
+              alt={product.name}
+              sx={{
+                borderTopLeftRadius: '15px',
+                borderTopRightRadius: '15px',
+                objectFit: 'cover',
+              }}
+            />
+            <CardContent sx={{ padding: '20px' }}>
+              <Typography variant="h5" component="div" gutterBottom sx={{ fontWeight: '600' }}>
+                {product.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ marginBottom: '10px' }}>
+                {product.desc}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 'bold' }}>
+                Rs. {product.price}
+              </Typography>
+            </CardContent>
+            <CardActions sx={{ justifyContent: 'center', paddingBottom: '20px' }}>
+              <Link href={`/products/${product._id}`} style={{ textDecoration: 'none' }}>
+                <Button
+                  size="small"
+                  variant="contained"
+                  sx={{
+                    bgcolor: "black",
+                    color: "white",
+                    '&:hover': {
+                      bgcolor: '#333',
+                    },
+                    borderRadius: '20px',
+                    padding: '10px 20px',
+                  }}
+                >
+                  Buy Now
+                </Button>
+              </Link>
+            </CardActions>
+          </Card>
         </Grid>
-        </ScrollReveal>
-      </Box>
+      ))}
+    </Grid>
+  </ScrollReveal>
+</Box>
+
 
       <ScrollReveal>
-      <ServiceCard />
+      <ServiceCard />   
       </ScrollReveal>
 
 
 
 
   
-      <Box sx={{ flexGrow: 1, mt: 4, textAlign: 'center', color: 'black', marginTop:"50px" }}>
+      <Box sx={{ flexGrow: 1, mt: 4, textAlign: 'center', color: 'black', marginTop: "50px" }}>
+  <ScrollReveal>
+    <Typography
+      variant="h4"
+      sx={{
+        fontSize: "3rem",
+        marginBottom: "30px",
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        letterSpacing: '1px',
+      }}
+      gutterBottom
+    >
+      Our Segments
+    </Typography>
+  </ScrollReveal>
 
-<ScrollReveal>
-        <Typography variant="h4" sx={{ fontSize: "3rem" }} gutterBottom>
-          Our Segments
-        </Typography>
-</ScrollReveal>
-        {/* Grid to hold segment cards */}
-
-
-        <ScrollReveal>
-        <Grid container spacing={3} justifyContent="center">
-          {segmentData.map((segment, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={{ maxWidth: 345, margin: 'auto' }}>
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={segment.image} // Use the same image for segments
-                  alt={segment.name}
-                />
-                <CardContent>
-                  <Typography variant="h5" component="div" gutterBottom>
-                    {segment.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {segment.description}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Link href={segment.link} style={{ textDecoration: 'none', margin: 'auto' }}>
-                    <Button size="small" variant="contained" sx={{ bgcolor: "black", color: "white", margin: "auto", padding: "10px" }}>
-                      Learn More
-                    </Button>
-                  </Link>
-                </CardActions>
-              </Card>
-            </Grid>
-
-          ))}
+  <ScrollReveal>
+    <Grid container spacing={4} justifyContent="center">
+      {segmentData.map((segment, index) => (
+        <Grid item xs={12} sm={6} md={3} key={index}> {/* Changed md={4} to md={3} */}
+          <Card
+            sx={{
+              maxWidth: 300, // Reduced max width for smaller cards
+              margin: 'auto',
+              borderRadius: '15px',
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+              transition: 'transform 0.3s, box-shadow 0.3s',
+              '&:hover': {
+                transform: 'scale(1.05)',
+                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.2)',
+              },
+            }}
+          >
+            <CardMedia
+              component="img"
+              height="200"
+              image={segment.image}
+              alt={segment.name}
+              sx={{
+                borderTopLeftRadius: '15px',
+                borderTopRightRadius: '15px',
+                objectFit: 'cover',
+              }}
+            />
+            <CardContent sx={{ padding: '20px' }}>
+              <Typography variant="h5" component="div" gutterBottom sx={{ fontWeight: '600' }}>
+                {segment.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ marginBottom: '10px' }}>
+                {segment.description}
+              </Typography>
+            </CardContent>
+            <CardActions sx={{ justifyContent: 'center', paddingBottom: '20px' }}>
+              <Link href={segment.link} style={{ textDecoration: 'none' }}>
+                <Button
+                  size="small"
+                  variant="contained"
+                  sx={{
+                    bgcolor: "black",
+                    color: "white",
+                    '&:hover': {
+                      bgcolor: '#333',
+                    },
+                    borderRadius: '20px',
+                    padding: '10px 20px',
+                  }}
+                >
+                  Learn More
+                </Button>
+              </Link>
+            </CardActions>
+          </Card>
         </Grid>
-        </ScrollReveal>
-      </Box>
+      ))}
+    </Grid>
+  </ScrollReveal>
+</Box>
 
       {/* Our Achievements */}
 

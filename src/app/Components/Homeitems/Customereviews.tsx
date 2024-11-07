@@ -9,25 +9,25 @@ import {
   Box,
   Button,
 } from '@mui/material';
-import ReviewModal from './reviewModal'; // Import the modal component
+import ReviewModal from './reviewModal'; 
 
 interface Review {
   _id: string;
   name: string;
   review: string;
   image?: string;
-  rating: number; // Add rating to the Review interface
+  rating: number; 
 }
 
 const CustomerReviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
-  const [modalOpen, setModalOpen] = useState(false); // State for modal visibility
+  const [modalOpen, setModalOpen] = useState(false); 
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/reviews');
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/reviews`);
       setReviews(response.data);
     } catch (error) {
       console.error('Error fetching reviews:', error);
@@ -48,7 +48,7 @@ const CustomerReviews = () => {
   };
 
   const refreshReviews = () => {
-    fetchReviews(); // Refresh reviews after submitting
+    fetchReviews(); 
   };
 
   const renderStars = (rating: number) => {

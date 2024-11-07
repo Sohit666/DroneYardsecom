@@ -8,8 +8,8 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const handleRemoveFromCart = (name: string) => {
-    dispatch(removeFromCart({ name }));
+  const handleRemoveFromCart = (id: string) => {
+      dispatch(removeFromCart({ id }));
   };
 
   const calculateTotalPrice = () => {
@@ -57,7 +57,7 @@ const Cart = () => {
                 </Typography>
                 <Button
                   variant="contained"
-                  onClick={() => handleRemoveFromCart(item.name)}
+                  onClick={() => handleRemoveFromCart(item.id)}
                   sx={{ marginTop: '10px', backgroundColor: 'black', color: 'white' }}
                 >
                   Remove

@@ -14,6 +14,7 @@ import {
   Select,
   InputLabel,
   FormControl,
+  SelectChangeEvent,
 } from '@mui/material';
 import { addToCart } from '../../../store/cartslice';
 import { useFilterProducts } from '../../../hooks/useFilterProducts';
@@ -27,14 +28,11 @@ const truncateText = (text: string, limit: number) => {
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Product[]>([]);
-  const [selectedColor, setSelectedColor] = useState<string>('');
-  const [weightRange, setWeightRange] = useState<number[]>([0, 10]); // Adjust max weight as needed
-  const [dimensionRange, setDimensionRange] = useState<number[]>([0, 10]); // Adjust max dimensions as needed
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/products');
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`);
         const data = await res.json();
         const filteredProds = data.filter((prod: Product) => prod.type === 'Accessories');
         const prodsWithImages = filteredProds.map((prod: Product) => ({
@@ -52,19 +50,16 @@ const ProductsPage = () => {
 
   const {
     filteredProducts,
-    sortOption,
-    handleSort,
     priceRange,
     handlePriceChange,
     filterName,
     handleNameFilterChange,
     filterType,
     handleTypeFilterChange,
-    handleColorChange, 
-    handleWeightChange, 
-    handleDimensionChange, 
+    handleColorChange,
+   
   } = useFilterProducts(products); 
-  // Update filter handlers
+
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart({
       id: product.id,
@@ -74,8 +69,8 @@ const ProductsPage = () => {
       quantity: 1,
       image: product.image,
       color: product.colors?.[0] || 'defaultColor',
-      weight: product.weight || 0, // Provide a default value if weight is not available
-      dimensions: product.dimensions || { width: 0, height: 0, depth: 0 }, // Provide default dimensions if not available
+      weight: product.weight || 0,
+      dimensions: product.dimensions || { width: 0, height: 0, depth: 0 },
     }));
   };
 
@@ -92,7 +87,6 @@ const ProductsPage = () => {
             <Typography variant="h6" sx={{color:"black"}} gutterBottom>
               Filters
             </Typography>
-            {/* Name Filter */}
             <TextField
               label="Search by Name"
               variant="outlined"
@@ -101,7 +95,6 @@ const ProductsPage = () => {
               onChange={(e) => handleNameFilterChange(e.target.value)}
               sx={{ mb: 3 }}
             />
-            {/* Type Filter */}
             <FormControl fullWidth sx={{ mb: 3 }}>
               <InputLabel>Filter by Type</InputLabel>
               <Select value={filterType} onChange={(e) => handleTypeFilterChange(e.target.value)}>
@@ -113,20 +106,15 @@ const ProductsPage = () => {
                 <MenuItem value="Motors">Motors</MenuItem>
               </Select>
             </FormControl>
-
-            {/* Color Filter */}
             <FormControl fullWidth sx={{ mb: 3 }}>
               <InputLabel>Filter by Color</InputLabel>
-              <Select value={selectedColor} onChange={(e) => handleColorChange(e.target.value)}> {/* Use handleColorChange */}
+              <Select onChange={(e: SelectChangeEvent<unknown>) => handleColorChange(e.target.value as string)}>
                 <MenuItem value="">All</MenuItem>
                 <MenuItem value="Red">Red</MenuItem>
                 <MenuItem value="Blue">Blue</MenuItem>
                 <MenuItem value="Green">Green</MenuItem>
-                {/* Add more colors based on your products */}
               </Select>
             </FormControl>
-
-            {/* Price Range Slider */}
             <Typography gutterBottom>Price Range</Typography>
             <Slider
               value={priceRange}
@@ -139,37 +127,6 @@ const ProductsPage = () => {
             <Typography align="center" variant="body2">
               ₹{priceRange[0]} - ₹{priceRange[1]}
             </Typography>
-
-            {/* Weight Range Slider */}
-            <Typography gutterBottom>Weight Range</Typography>
-            <Slider
-              value={weightRange}
-              onChange={(e, newVal) => handleWeightChange(newVal as number[])} // Use handleWeightChange
-              valueLabelDisplay="auto"
-              min={0}
-              max={10} // Adjust max weight as needed
-              sx={{ mb: 2 }}
-            />
-            <Typography align="center" variant="body2">
-              {weightRange[0]} kg - {weightRange[1]} kg
-            </Typography>
-
-            {/* Dimensions Range Slider */}
-            <Typography gutterBottom>Dimensions Range</Typography>
-            <Slider
-              value={dimensionRange}
-              onChange={(e, newVal) => handleDimensionChange(newVal as number[])} // Use handleDimensionChange
-              valueLabelDisplay="auto"
-              min={0}
-              max={10} // Adjust max dimensions as needed
-              sx={{ mb: 2 }}
-            />
-            <Typography align="center" variant="body2">
-              Width: {dimensionRange[0]} cm - {dimensionRange[1]} cm
-            </Typography>
-
-            {/* Sort Buttons */}
-            <Typography gutterBottom sx={{ mt: 3 }}>Sort By</Typography>
           </Box>
         </Grid>
 
@@ -185,10 +142,10 @@ const ProductsPage = () => {
                       borderRadius: 1,
                       padding: 2,
                       bgcolor: 'white',
-                      height: '400px', // Fixed height for all cards
+                      height: '400px',
                       display: 'flex',
                       flexDirection: 'column',
-                      justifyContent: 'space-between', // Space items within the card
+                      justifyContent: 'space-between',
                       transition: 'transform 0.3s',
                       '&:hover': { transform: 'scale(1.05)' },
                     }}
@@ -199,9 +156,9 @@ const ProductsPage = () => {
                         alt={product.name}
                         style={{
                           width: '100%',
-                          height: '200px', // Set fixed height for images
+                          height: '200px',
                           borderRadius: 8,
-                          objectFit: 'cover', // Ensure the image covers the box without distortion
+                          objectFit: 'cover',
                           cursor: 'pointer',
                         }}
                       />
@@ -212,7 +169,7 @@ const ProductsPage = () => {
                       </Typography>
                     </Link>
                     <Typography variant="body2" sx={{ mb: 2 }}>
-                      {truncateText(product.desc, 10)} {/* Limit the description to 100 characters */}
+                      {truncateText(product.desc, 10)}
                     </Typography>
                     <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
                       Price: ₹{product.price}

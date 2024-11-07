@@ -12,18 +12,19 @@ const GLBModel = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const container = mountRef.current; // Container ref
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
 
     const labelRenderer = new CSS2DRenderer();
-    labelRenderer.setSize(window.innerWidth, window.innerHeight);
+    labelRenderer.setSize(container.clientWidth, container.clientHeight);
     labelRenderer.domElement.style.position = 'absolute';
     labelRenderer.domElement.style.top = '0';
-    mountRef.current.appendChild(labelRenderer.domElement);
+    container.appendChild(labelRenderer.domElement);
 
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    mountRef.current.appendChild(renderer.domElement);
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
 
     camera.position.set(0, 2, 10);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
@@ -79,13 +80,16 @@ const GLBModel = () => {
     createLabel('Fly Smart', rightLabelPosition);
 
     const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      // Update camera and renderer for responsive resizing
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
       labelRenderer.setSize(width, height);
     };
+
     window.addEventListener('resize', handleResize);
 
     const clock = new THREE.Clock();
@@ -107,15 +111,15 @@ const GLBModel = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      if (mountRef.current) {
-        mountRef.current.removeChild(renderer.domElement);
-        mountRef.current.removeChild(labelRenderer.domElement);
+      if (container) {
+        container.removeChild(renderer.domElement);
+        container.removeChild(labelRenderer.domElement);
       }
     };
   }, []);
 
   return (
-    <div ref={mountRef} style={{ width: '100%', height: '100vh', position: 'relative' }}>
+    <div ref={mountRef} className="container" style={{ width: '100%', height: '400px', position: 'relative', marginTop: "-80px" }}>
       {loading && (
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: "black" }}>
           Loading...

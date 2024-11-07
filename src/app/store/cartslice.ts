@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppDispatch } from './store'; // Adjust the import according to your file structure
-import { Product } from '../types/product'; // Adjust the import based on your folder structure
 
 // Define the CartItem based on Product
 interface CartItem {

@@ -7,7 +7,7 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import { ClerkProvider } from '@clerk/nextjs';
 // import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme/theme'; // Import your custom theme
+
 import CssBaseline from '@mui/material/CssBaseline';
 import { metadata } from './metadata'; // Import the metadata
 

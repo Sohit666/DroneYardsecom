@@ -15,6 +15,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  CircularProgress, // Import CircularProgress
 } from '@mui/material';
 import { Product } from '../../../../types/product';
 import { addToCart } from '../../../../store/cartslice';
@@ -37,8 +38,9 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
     if (id) {
       const fetchProduct = async () => {
         try {
-          const res = await fetch(`http://localhost:3000/api/products/${id}`);
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products/${id}`);
           const data = await res.json();
+          
           setProduct(data);
           setSelectedColor(data?.colors?.[0] || '');
         } catch (error) {
@@ -69,7 +71,6 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
     }
   };
   
-
   const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuantity(Number(event.target.value));
   };
@@ -78,8 +79,13 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
     setSelectedColor(event.target.value);
   };
 
+  // Loader
   if (!product) {
-    return <Typography variant="h5">Loading product details...</Typography>;
+    return (
+      <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress color="inherit" />
+      </Container>
+    );
   }
 
   // Slider settings
@@ -95,7 +101,6 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
     pauseOnHover: true,
   };
   
-
   return (
     <Container sx={{ mt: 4 }}>
       <Grid container spacing={4}>
@@ -270,7 +275,6 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
         </Grid>
       </Grid>
       <Random />
-
     </Container>
   );
 };

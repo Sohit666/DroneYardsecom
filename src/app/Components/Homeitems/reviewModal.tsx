@@ -6,19 +6,37 @@ import {
   Button,
   TextField,
   IconButton,
+  CircularProgress,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 
 const modalStyle = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute' as const,
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
+  borderRadius: '8px',
   boxShadow: 24,
   p: 4,
+};
+
+const headingStyle = {
+  fontSize: '1.25rem',
+  fontWeight: 'bold',
+  mb: 2,
+  color:"black"
+};
+
+const fileUploadContainerStyle = {
+  marginTop: '1rem',
+  marginBottom: '1rem',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  textAlign: 'center',
 };
 
 interface ReviewModalProps {
@@ -32,6 +50,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({ open, handleClose, refreshRev
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
   const [image, setImage] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -41,6 +60,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({ open, handleClose, refreshRev
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append('name', name);
     formData.append('review', review);
@@ -50,15 +70,17 @@ const ReviewModal: React.FC<ReviewModalProps> = ({ open, handleClose, refreshRev
     }
 
     try {
-      await axios.post('http://localhost:3000/api/reviews', formData, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/reviews`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      refreshReviews(); // Call the function to refresh reviews
-      handleClose(); // Close the modal
+      refreshReviews();
+      handleClose();
     } catch (error) {
       console.error('Error submitting review:', error);
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
@@ -72,7 +94,7 @@ const ReviewModal: React.FC<ReviewModalProps> = ({ open, handleClose, refreshRev
         >
           <CloseIcon />
         </IconButton>
-        <Typography variant="h6" component="h2">
+        <Typography variant="h6" component="h2" sx={headingStyle}>
           Submit Your Review
         </Typography>
         <form onSubmit={handleSubmit}>
@@ -104,10 +126,29 @@ const ReviewModal: React.FC<ReviewModalProps> = ({ open, handleClose, refreshRev
             inputProps={{ min: 1, max: 5 }}
             required
           />
-          <input type="file" onChange={handleImageChange} />
-          <Button type="submit" variant="contained" color="primary" sx={{ mt: 2 }}>
-            Submit Review
+          <Box sx={fileUploadContainerStyle}>
+            <Typography variant="subtitle1" color="textSecondary">
+              Upload Your Image
+            </Typography>
+            <input type="file" onChange={handleImageChange} style={{ marginTop: '8px' }} />
+          </Box>
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            sx={{
+              mt: 2,
+              bgcolor: '#333', 
+              color: '#fff', 
+              '&:hover': {
+                bgcolor: '#222', 
+              },
+            }}
+            disabled={loading}
+          >
+            {loading ? <CircularProgress size={24} color="inherit" /> : 'Submit Review'}
           </Button>
+
         </form>
       </Box>
     </Modal>

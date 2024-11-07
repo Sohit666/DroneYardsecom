@@ -27,14 +27,14 @@ const truncateText = (text: string, limit: number) => {
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState<Product[]>([]);
-  const [selectedColor, setSelectedColor] = useState<string>('');
-  const [weightRange, setWeightRange] = useState<number[]>([0, 10]); // Adjust max weight as needed
-  const [dimensionRange, setDimensionRange] = useState<number[]>([0, 10]); // Adjust max dimensions as needed
+  const [selectedColor] = useState<string>('');
+  const [weightRange] = useState<number[]>([0, 10]); // Adjust max weight as needed
+  const [dimensionRange] = useState<number[]>([0, 10]); // Adjust max dimensions as needed
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/products');
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`);
         const data = await res.json();
         const filteredProds = data.filter((prod: Product) => prod.type === 'Frames');
         const prodsWithImages = filteredProds.map((prod: Product) => ({
@@ -52,8 +52,7 @@ const ProductsPage = () => {
 
   const {
     filteredProducts,
-    sortOption,
-    handleSort,
+  
     priceRange,
     handlePriceChange,
     filterName,
@@ -67,13 +66,16 @@ const ProductsPage = () => {
   // Update filter handlers
   const handleAddToCart = (product: Product) => {
     dispatch(addToCart({
-      name: product.name,
-      description: product.desc,
-      price: product.price,
-      quantity: 1,
-      image: product.image,
-      color: product.colors?.[0] || 'defaultColor',
-    }));
+          id: product.id,
+          name: product.name,
+          description: product.desc,
+          price: product.price,
+          quantity: 1,
+          image: product.image,
+          color: product.colors?.[0] || 'defaultColor',
+          weight: product.weight || 0,
+          dimensions: product.dimensions || { width: 0, height: 0, depth: 0 },
+        }));
   };
 
   return (

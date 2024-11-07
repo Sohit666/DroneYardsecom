@@ -97,7 +97,7 @@ const About = () => {
       </div>
 
 
-      <div style={{ marginTop: "-50px", marginBottom: "30px" }}>
+      <div >
         <Model />
       </div>
 

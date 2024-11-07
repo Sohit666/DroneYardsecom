@@ -2,31 +2,36 @@
 import { useEffect, useState } from 'react';
 import { Grid, Card, CardContent, CardMedia, Typography, Button, Box } from '@mui/material';
 import Link from 'next/link';
-import { useMediaQuery, useTheme } from '@mui/material';
+
+
+interface Product {
+  id: number;
+  name: string;
+  desc: string;
+  price: number;
+  imageUrls?: string[];
+  image?: string;
+}
 
 const RandomProducts = () => {
-  const [randomProducts, setRandomProducts] = useState<any[]>([]);
+  const [randomProducts, setRandomProducts] = useState<Product[]>([]);
   const [productsToFetch] = useState(6);  // Always fetch 6 products
 
-  const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
+ 
 
-  // Adjust product layout based on screen size
   useEffect(() => {
     const fetchRandomProducts = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/products');
-        const data = await res.json();
-        
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`);
+        const data: Product[] = await res.json();
+
         // Randomly select 6 products
         const randomProds = data.sort(() => 0.5 - Math.random()).slice(0, productsToFetch);
-        
+
         // Add image URLs if they exist
-        const prodsWithImages = randomProds.map((prod: any) => ({
+        const prodsWithImages = randomProds.map((prod) => ({
           ...prod,
-          image: (prod.imageUrls ?? [])[0] || '', // Default to empty string if no image URL
+          image: (prod.imageUrls ?? [])[0] || '',
         }));
 
         setRandomProducts(prodsWithImages);
@@ -36,7 +41,7 @@ const RandomProducts = () => {
     };
 
     fetchRandomProducts();
-  }, [productsToFetch]);  // Re-fetch when number of products changes
+  }, [productsToFetch]);
 
   return (
     <Box sx={{ padding: 2, bgcolor: 'white', marginTop: 4 }}>
@@ -55,9 +60,10 @@ const RandomProducts = () => {
                   display: 'flex',
                   flexDirection: 'column', 
                   maxWidth: 345,
-                  borderRadius: 3,  // More rounded corners
-                  boxShadow: 4,     // Slightly stronger shadow for better contrast
-                  '&:hover': { transform: 'scale(1.05)', transition: 'transform 0.3s', boxShadow: 8 }, // Hover effect
+                  borderRadius: 3,
+                  boxShadow: 4,
+                  transition: '0.3s',
+                  '&:hover': { transform: 'scale(1.05)', boxShadow: 8 },
                 }}
               >
                 <Link href={`/pages/products/motors/${product.id}`} passHref>
@@ -83,7 +89,7 @@ const RandomProducts = () => {
                   </Typography>
                   {/* Fixing button at the bottom */}
                   <Box sx={{ marginTop: 'auto' }}>
-                    <Button variant="contained" color="primary" sx={{ width: '100%', borderRadius: 2, height: 40 }}>
+                    <Button variant="contained" color="secondary" sx={{ width: '100%', borderRadius: 2, height: 40 }}>
                       Add to Cart
                     </Button>
                   </Box>
