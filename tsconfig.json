@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/store/cartslice.js", "src/app/store/store.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/store/cartslice.js", "src/app/store/store.js", "src/app/Components/Homeitems/Customereviews.jsx"],
   "exclude": ["node_modules"]
 }
