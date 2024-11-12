@@ -1,4 +1,3 @@
-// pages/shop.tsx
 import { Grid, Typography } from '@mui/material';
 import ProductCard from './ProductCard';
 
@@ -11,7 +10,7 @@ interface Product {
 const productData: Product[] = [
   { image: '/images/product1.png', title: 'Batteries', link: '/pages/products/battery' },
   { image: '/images/product2.png', title: 'Goggles', link: '/pages/products/goggles' },
-  { image: '/images/product3.png', title: 'Drone Equipments', link: '/pages/accessory' },
+  { image: '/images/product3.png', title: 'Drone Equipments', link: '/pages/products/accessory' },
   { image: '/images/product4.png', title: 'Propellers', link: '/pages/products/propiler' },
   { image: '/images/product5.png', title: 'Radios', link: '/pages/products/radioAntenna' },
   { image: '/images/product6.png', title: 'Motors', link: '/pages/products/motors' },
@@ -28,9 +27,9 @@ const ShopPage: React.FC = () => {
         sx={{
           textAlign: 'center',
           margin: '20px 0', 
-          fontSize: { xs: '2rem', sm: '3rem', md: '4rem' }, // Responsive font size
+          fontSize: { xs: '1.5rem', sm: '2.5rem', md: '4rem' }, // Smaller font size for mobile
           fontWeight: 'bold',
-          color: 'black', // Customize color from theme
+          color: 'black', 
           textTransform: 'uppercase',
         }}
       >
@@ -45,7 +44,7 @@ const ShopPage: React.FC = () => {
         justifyContent="center" // Center the grid on large screens
       >
         {productData.map((product, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Grid item xs={6} sm={6} md={3} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
             <ProductCard image={product.image} title={product.title} link={product.link} />
           </Grid>
         ))}

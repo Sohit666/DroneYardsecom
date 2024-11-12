@@ -83,6 +83,7 @@ const About = () => {
         loop
         muted
         playsInline
+        controls={false}
         style={{
           width: '100%',
           height: 'auto',
@@ -93,7 +94,7 @@ const About = () => {
       {/* Other content below the video */}
       <div>
         <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center' }}>Your Content Below</h1>
-        <p style={{ color: 'black', fontSize: '1.25rem', textAlign: 'center' }}>This is where your other component content goes.</p>
+        <p style={{ color: 'black', fontSize: '1.25rem', textAlign: 'center',marginTop:"10px" }}>This is where your other component content goes.</p>
       </div>
 
 
@@ -103,15 +104,20 @@ const About = () => {
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'space-around',
+          flexDirection: 'row',
+          justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: 'black',
           color: 'white',
-          padding: '40px',
-          gap: 4,
-          width: '100%',
-          borderRadius: '70px',
-          marginTop: '-250px'
+          paddingY: { xs: '10px', sm: '20px' },
+          gap: { xs: 0.5, sm: 2 },
+          width: { xs: '100%', sm: '60%' }, // Use a wider width on mobile for better fit
+          borderRadius: { xs: '30px', sm: '50px' },
+          marginTop: { xs: '20px', sm: '30px' },
+          marginBottom: { xs: '10px', sm: '20px' },
+          margin: '0 auto', // Center horizontally
+          overflowX: 'auto',
+          paddingX: { xs: '5px', sm: '20px' },
         }}
       >
         {statsData.map((stat, index) => (
@@ -119,7 +125,8 @@ const About = () => {
             key={index}
             sx={{
               textAlign: 'center',
-              minWidth: '150px',
+              minWidth: '80px', // Further reduce width for tight fit
+              maxWidth: '150px',
             }}
           >
             <Typography
@@ -134,7 +141,7 @@ const About = () => {
             <Typography
               sx={{
                 color: 'white',
-                fontSize: '1rem'
+                fontSize: '0.5rem'
               }}
             >
               {stat.label}
@@ -142,6 +149,9 @@ const About = () => {
           </Box>
         ))}
       </Box>
+
+
+
 
       <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center' }}>What We Do</h1>
       <Box
@@ -163,6 +173,7 @@ const About = () => {
                 autoPlay
                 loop
                 muted
+                controls={false}
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </CardCover>
@@ -196,34 +207,86 @@ const About = () => {
         ))}
       </Box>
 
-      <Box display="flex" justifyContent="space-between" p={2} marginTop={"20px"}>
-        {/* Video Card */}
-        <Card sx={{ flex: 1, marginRight: 2, position: 'relative', overflow: 'hidden' }}>
-          <video
-            autoPlay
-            loop
-            muted
-            style={{ width: '100%', height: 'auto' }}
-          >
-            <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </Card>
 
-        {/* Text Card */}
-        <Card sx={{ flex: 1, backgroundColor: '#ffffff' }}>
-          <CardContent>
-            <Typography component="div" gutterBottom>
-              Card Title
-            </Typography>
-            <Typography>
-              This is some descriptive text that provides more information about
-              the topic related to the video in the adjacent card. You can add
-              more details or context here.
-            </Typography>
-          </CardContent>
-        </Card>
-      </Box>
+
+
+
+      <Box
+  sx={{
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: { xs: 2, sm: 4 }, // Add responsive gap between cards
+    flexDirection: { xs: 'column', sm: 'row' }, // Stack cards on smaller screens
+    padding: { xs: 2, sm: 3 }, // Increase padding for larger screens
+    marginTop: '20px',
+    width: '100%',
+    alignItems: 'center',
+  }}
+>
+  {/* Video Card */}
+  <Card
+    sx={{
+      flex: 1,
+      marginRight: { sm: 2 }, // Keep spacing between cards only on larger screens
+      marginBottom: { xs: 2, sm: 0 }, // Margin at the bottom for mobile view
+      position: 'relative',
+      overflow: 'hidden',
+      borderRadius: '8px', // Smooth corners for the card
+      boxShadow: 3, // Add subtle shadow for better depth
+    }}
+  >
+    <video
+      autoPlay
+      loop
+      muted
+      controls={false}
+      style={{
+        width: '100%',
+        height: 'auto',
+        borderRadius: '8px', // Make the video corners match the card
+      }}
+    >
+      <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </Card>
+
+  {/* Text Card */}
+  <Card
+    sx={{
+      flex: 1,
+      backgroundColor: '#ffffff',
+      borderRadius: '8px', // Matching border radius with video card
+      boxShadow: 3, // Add subtle shadow for better depth
+      padding: 3, // Consistent padding inside the card
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    }}
+  >
+    <CardContent>
+      <Typography
+        component="div"
+        gutterBottom
+        sx={{
+          fontSize: { xs: '1.25rem', sm: '1.5rem' }, // Responsive title size
+          fontWeight: 'bold',
+          color: '#333',
+        }}
+      >
+        Card Title
+      </Typography>
+      <Typography
+        sx={{
+          fontSize: { xs: '1rem', sm: '1.125rem' }, // Adjust text size for readability
+          color: 'text.secondary',
+        }}
+      >
+        This is some descriptive text that provides more information about the topic related to the video in the adjacent card. You can add more details or context here.
+      </Typography>
+    </CardContent>
+  </Card>
+</Box>
 
       <h1 style={{ color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center' }}>Our Segments</h1>
       <Grid container spacing={4} justifyContent="center">
@@ -258,6 +321,13 @@ const About = () => {
           </Grid>
         ))}
       </Grid>
+
+
+
+
+
+
+
 
       {/* Founders Section */}
 

@@ -45,7 +45,7 @@ const RandomProducts = () => {
 
   return (
     <Box sx={{ padding: 2, bgcolor: 'white', marginTop: 4 }}>
-      <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 'bold', mb: 4 }}>
+      <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 'bold', mb: 4  , color:"black"}}>
         Featured Products
       </Typography>
 

@@ -126,35 +126,35 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
 
         {/* Product Information */}
         <Grid item xs={12} md={6}>
-          <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
+          <Typography variant="h4" sx={{ fontWeight: 'bold',color:"black" }}>
             {product.name}
           </Typography>
 
           {/* Rating Placeholder */}
           <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
             <Rating value={0} readOnly precision={0.5} />
-            <Typography variant="body2" sx={{ ml: 1 }}>
+            <Typography variant="body2" sx={{ ml: 1,color:"black" }}>
               (0 reviews)
             </Typography>
           </Box>
 
-          <Typography variant="body1" sx={{ mt: 2 }}>
+          <Typography variant="body1" sx={{ mt: 2,color:"black"}}>
             {product.desc}
           </Typography>
 
-          <Typography variant="h6" sx={{ mt: 2, fontWeight: 'bold' }}>
+          <Typography variant="h6" sx={{ mt: 2, fontWeight: 'bold',color:"black" }}>
             Price: ₹{product.price}
           </Typography>
 
           {/* Additional Product Details */}
           <Box sx={{ mt: 2 }}>
-            <Typography variant="body2">
+            <Typography variant="body2" sx={{color:"black"}}>
               <strong>Dimensions:</strong> {`${product.dimensions?.width ?? 0} x ${product.dimensions?.height ?? 0} x ${product.dimensions?.depth ?? 0}`} cm
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2"  sx={{color:"black"}}>
               <strong>Weight:</strong> {product.weight} kg
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2"  sx={{color:"black"}}>
               <strong>Colors available:</strong> {product.colors ? product.colors.join(', ') : 'No colors available'}
             </Typography>
           </Box>
@@ -207,7 +207,7 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
 
           {/* Why Choose DroneYards Section */}
           <Box sx={{ borderTop: '1px solid #e0e0e0', pt: 3 }}>
-            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 ,color:"black"}}>
               Why choose DroneYards?
             </Typography>
             <List>
@@ -215,7 +215,7 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
                 <ListItemIcon>
                   <CachedIcon color="primary" />
                 </ListItemIcon>
-                <ListItemText
+                <ListItemText sx={{color:"black"}}
                   primary="7 days Service Centre Replacement"
                   secondary="Enjoy hassle-free replacement within 7 days at our service centers."
                 />
@@ -226,6 +226,7 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
                   <LocalShippingIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText
+                sx={{color:"black"}}
                   primary="Free Delivery"
                   secondary="Fast and free delivery to your doorstep."
                 />
@@ -236,6 +237,7 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
                   <SecurityIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText
+                sx={{color:"black"}}
                   primary="1 Year Warranty"
                   secondary="Get 1 year of warranty on all products."
                 />
@@ -246,6 +248,7 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
                   <PaymentIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText
+                sx={{color:"black"}}
                   primary="Cash/Pay on Delivery"
                   secondary="Convenient payment options, including cash on delivery."
                 />
@@ -256,6 +259,7 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
                   <VerifiedIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText
+                sx={{color:"black"}}
                   primary="Top Brand"
                   secondary="Purchase from top and trusted brands in the industry."
                 />
@@ -266,6 +270,7 @@ const ProductDetailsPage = ({ params }: { params: { id: string } }) => {
                   <BuildIcon color="primary" />
                 </ListItemIcon>
                 <ListItemText
+                sx={{color:"black"}}
                   primary="Installation Available"
                   secondary="Installation services are available for selected products."
                 />

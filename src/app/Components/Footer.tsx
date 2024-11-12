@@ -62,7 +62,7 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/pages/policies/terms-and-conditions" sx={{ color: 'grey.400', '&:hover': { color: 'white' } }}>
+              <Link href="/pages/policies/term&conditions" sx={{ color: 'grey.400', '&:hover': { color: 'white' } }}>
                 Terms and Conditions
               </Link>
             </li>

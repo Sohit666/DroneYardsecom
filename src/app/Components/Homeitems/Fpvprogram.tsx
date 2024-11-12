@@ -21,7 +21,7 @@ const DroneyardTraining: React.FC<DroneyardTrainingProps> = ({ images = [] }) =>
                 Droneyard FPV Drone Training Program
             </Typography>
             <Typography variant="body1" gutterBottom>
-                Are you an aspiring student eager to explore the thrilling world of FPV (First-Person View) drone flying? Our expert-led, comprehensive training program is specifically designed to provide you with the essential skills and knowledge to become proficient in FPV drone flight. Through structured lessons and hands-on experience, we will guide you through every step of the learning process, from basic controls to advanced maneuvers. Whether you're a beginner or looking to refine your skills, our program ensures that you will gain the confidence to soar through the skies with precision and ease. Join us today and unlock your potential as an FPV drone pilot!
+                Are you an aspiring student eager to explore the thrilling world of FPV (First-Person View) drone flying? Our expert-led, comprehensive training program is specifically designed to provide you with the essential skills and knowledge to become proficient in FPV drone flight. Through structured lessons and hands-on experience, we will guide you through every step of the learning process, from basic controls to advanced maneuvers. Whether you&apos;re a beginner or looking to refine your skills, our program ensures that you will gain the confidence to soar through the skies with precision and ease. Join us today and unlock your potential as an FPV drone pilot!
             </Typography>
 
             {/* Responsive Image Gallery */}
@@ -48,15 +48,14 @@ const DroneyardTraining: React.FC<DroneyardTrainingProps> = ({ images = [] }) =>
                         mt: 4,
                         bgcolor: 'black',
                         color: 'white',
-                        padding: '12px 24px', // Adjust the padding to increase button size
+                        padding: '12px 24px',
                         '&:hover': {
                           bgcolor: 'grey.800',
                           color: 'white',
                           transform: 'scale(1.05)',
                           transition: 'all 0.3s ease-in-out',
                         }
-                      }}
-                      
+                    }}
                 >
                     Learn More
                 </Button>

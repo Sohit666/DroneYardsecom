@@ -7,10 +7,10 @@ export const metadata = {
     openGraph: {
       title: 'DroneYards',
       description: 'Welcome to our e-commerce store. Explore our amazing products!',
-      url: 'https://www.yourstore.com',
+      url: 'https://www.DroneYards.com',
       images: [
         {
-          url: 'https://www.yourstore.com/images/store.jpg',
+          url: 'https://www.DroneYards.com',
           width: 800,
           height: 600,
         },

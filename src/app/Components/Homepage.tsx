@@ -83,9 +83,9 @@ const Homepage: React.FC = () => {
       <Carousel />
       <div >
 
-        <ScrollReveal >
+      
           <Partitems />
-        </ScrollReveal>
+       
       </div>
 
 
@@ -93,14 +93,14 @@ const Homepage: React.FC = () => {
 
 
 
-      <ScrollReveal>
-
-      <FPVProgram />
-
-      </ScrollReveal>
-
-
       
+
+        <FPVProgram />
+
+    
+
+
+
 
 
       <ScrollReveal>
@@ -118,14 +118,57 @@ const Homepage: React.FC = () => {
             backgroundColor: '#f5f5f5',
             borderRadius: 2,
             boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+            flexDirection: { xs: 'column', sm: 'row' }, // Stack content on mobile, image on top
           }}
         >
+          {/* Image Section */}
+          <Box
+            className="drone-ad-image"
+            flex="1"
+            textAlign="center"
+            sx={{
+              display: { xs: 'block', sm: 'block' }, // Keep image display block on all screen sizes
+              marginBottom: { xs: 4, sm: 0 }, // Margin below the image for mobile
+              marginLeft: { sm: 4, md: 10 },
+            }}
+          >
+            <img
+              src="/homepage/Drone.png"
+              alt="BIR V2 Drone"
+              style={{
+                width: '100%', // Make image responsive and take full width
+                height: 'auto',
+                maxWidth: '550px', // Limit image size
+                filter: 'drop-shadow(10px 10px 6px #5d5c59)',
+              }}
+            />
+          </Box>
+
+
           {/* Text Section */}
-          <Box className="drone-ad-content" textAlign="center" flex="1">
-            <Typography variant="h4" sx={{ color: 'black', fontWeight: 'bold', fontSize: '2rem' }}>
+          <Box
+            className="drone-ad-content"
+            textAlign="center"
+            flex="1"
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                color: 'black',
+                fontWeight: 'bold',
+                fontSize: { xs: '1.8rem', sm: '2rem', md: '2.5rem' }, // Responsive font size
+              }}
+            >
               Buy Drones
             </Typography>
-            <Typography variant="h6" sx={{ color: 'black', fontSize: '1.25rem', marginTop: 1 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                color: 'black',
+                fontSize: { xs: '1rem', sm: '1.25rem' }, // Adjust font size for small screens
+                marginTop: 1,
+              }}
+            >
               Starting ₹ 35999*
             </Typography>
             <Typography sx={{ color: 'black', fontSize: '1rem', marginY: 1 }}>
@@ -134,15 +177,16 @@ const Homepage: React.FC = () => {
             <Typography sx={{ color: 'black', fontStyle: 'italic', marginY: 1 }}>
               - Flight Time up to 20 mins* -
             </Typography>
-            <Box mt={3}>
+            <Box mt={3} display="flex" flexDirection="column" alignItems="center">
               <Button
                 variant="outlined"
                 sx={{
-                  mr: 2,
+                  mb: 2,
                   bgcolor: "black",
                   color: "white",
                   boxShadow: '0px 3px 8px rgba(0, 0, 0, 0.3)',
-                  '&:hover': { bgcolor: '#333' }
+                  '&:hover': { bgcolor: '#333' },
+                  width: { xs: '100%', sm: 'auto' }, // Full width for mobile
                 }}
               >
                 Learn More
@@ -153,28 +197,17 @@ const Homepage: React.FC = () => {
                   bgcolor: "gray",
                   color: "white",
                   boxShadow: '0px 3px 8px rgba(0, 0, 0, 0.3)',
-                  '&:hover': { bgcolor: '#666' }
+                  '&:hover': { bgcolor: '#666' },
+                  width: { xs: '100%', sm: 'auto' }, // Full width for mobile
                 }}
               >
                 Order Now
               </Button>
             </Box>
           </Box>
-
-          {/* Image Section */}
-          <Box className="drone-ad-image" flex="1" textAlign="right">
-            <img
-              src="/homepage/Drone.png"
-              alt="BIR V2 Drone"
-              style={{
-                width: '90%',
-                height: '80%',
-                filter: 'drop-shadow(10px 10px 6px #5d5c59)'
-
-              }}
-            />
-          </Box>
         </Box>
+
+
 
       </ScrollReveal>
 
@@ -198,11 +231,10 @@ const Homepage: React.FC = () => {
 
           <Grid container spacing={4} justifyContent="center">
             {productData.map((product, index) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
+              <Grid item xs={6} sm={6} md={4} lg={3} key={product._id}>
                 <Card
                   sx={{
                     maxWidth: 330,
-
                     mx: 'auto',
                     borderRadius: '20px',
                     boxShadow: '0 6px 25px rgba(0, 0, 0, 0.15)',
@@ -225,6 +257,7 @@ const Homepage: React.FC = () => {
                       filter: 'brightness(90%)',
                       transition: 'filter 0.3s',
                       '&:hover': { filter: 'brightness(100%)' },
+                      width: '100%', // Ensure image scales properly
                     }}
                   />
                   <CardContent sx={{ padding: '24px' }}>
@@ -278,6 +311,8 @@ const Homepage: React.FC = () => {
                           borderRadius: '25px',
                           px: 3,
                           py: 1,
+                          width: '100%', // Full width on mobile
+                          maxWidth: '200px', // Limit width on large screens
                         }}
                       >
                         Buy Now
@@ -290,6 +325,7 @@ const Homepage: React.FC = () => {
           </Grid>
         </ScrollReveal>
       </Box>
+
 
 
 
@@ -318,7 +354,7 @@ const Homepage: React.FC = () => {
           </Typography>
         </ScrollReveal>
 
-        <ScrollReveal>
+     
           <Grid container spacing={4} justifyContent="center">
             {segmentData.map((segment, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
@@ -387,57 +423,64 @@ const Homepage: React.FC = () => {
               </Grid>
             ))}
           </Grid>
-        </ScrollReveal>
+       
       </Box>
 
 
-      {/* Our Achievements */}
-
       <ScrollReveal>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            backgroundColor: 'black',
-            color: 'white',
-            padding: '40px',
-            gap: 4,
-            width: '100%',
-            borderRadius: '70px',
-            marginTop: '70px',
-            marginBottom: '40px'
-          }}
-        >
-          {statsData.map((stat, index) => (
-            <Box
-              key={index}
-              sx={{
-                textAlign: 'center',
-                minWidth: '150px',
-              }}
-            >
-              <Typography
-                sx={{
-                  fontWeight: 'bold',
-                  color: 'white',
-                  fontSize: '1.5rem'
-                }}
-              >
-                <CountUp start={1} end={stat.value} duration={2.5} />
-              </Typography>
-              <Typography
-                sx={{
-                  color: 'white',
-                  fontSize: '1rem'
-                }}
-              >
-                {stat.label}
-              </Typography>
-            </Box>
-          ))}
-        </Box>
-      </ScrollReveal>
+      <Box
+  sx={{
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black',
+    color: 'white',
+    paddingY: { xs: '10px', sm: '20px' }, // Reduce padding further for small screens
+    gap: { xs: 0.5, sm: 2 }, // Minimize gap between items on mobile
+    width: '100%',
+    borderRadius: { xs: '30px', sm: '50px' }, // Smaller radius on mobile for tighter fit
+    marginTop: { xs: '20px', sm: '30px' },
+    marginBottom: { xs: '10px', sm: '20px' },
+    overflowX: 'auto', // Always enable horizontal scrolling for small screens
+    paddingX: { xs: '5px', sm: '20px' }, // Minimized padding on small screens
+  }}
+>
+  {statsData.map((stat, index) => (
+    <Box
+      key={index}
+      sx={{
+        textAlign: 'center',
+        minWidth: '80px', // Further reduce width for tight fit
+        maxWidth: '150px',
+      }}
+    >
+      <Typography
+        sx={{
+          fontWeight: 'bold',
+          color: 'white',
+          fontSize: { xs: '1rem', sm: '1.4rem' }, // Smaller font size for mobile
+        }}
+      >
+        <CountUp start={1} end={stat.value} duration={2.5} />
+      </Typography>
+      <Typography
+        sx={{
+          color: 'white',
+          fontSize: { xs: '0.7rem', sm: '0.8rem' }, // Minimized font for label
+          marginTop: 0.2,
+        }}
+      >
+        {stat.label}
+      </Typography>
+    </Box>
+  ))}
+</Box>
+
+</ScrollReveal>
+
+
+
 
       {/* About Section */}
 
@@ -462,17 +505,17 @@ const Homepage: React.FC = () => {
         <ScrollReveal>
           <Typography
             sx={{
-              textAlign: 'center', 
+              textAlign: 'center',
               color: 'black',
-              maxWidth: '800px', 
-              margin: 'auto', 
-              paddingX: { xs: 2, sm: 4 }, 
-              lineHeight: 1.6, 
-              fontSize: { xs: '14px', sm: '16px', md: '18px' }, 
-              fontWeight: 340, 
-              letterSpacing: 0.5, 
+              maxWidth: '800px',
+              margin: 'auto',
+              paddingX: { xs: 2, sm: 4 },
+              lineHeight: 1.6,
+              fontSize: { xs: '14px', sm: '16px', md: '18px' },
+              fontWeight: 340,
+              letterSpacing: 0.5,
               '@media (max-width: 600px)': {
-                fontSize: '14px', 
+                fontSize: '14px',
               },
             }}
           >

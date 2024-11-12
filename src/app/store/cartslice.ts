@@ -1,32 +1,35 @@
+// cartslice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppDispatch } from './store'; // Adjust the import according to your file structure
 
-// Define the CartItem based on Product
+// Define CartItem interface
 interface CartItem {
-  id: string; // Ensure the id matches the product structure
+  id: string;
   name: string;
   description: string;
   price: number;
   quantity: number;
   image: string;
   color: string;
-  weight: number; // Added if relevant
-  dimensions: { width: number; height: number; depth: number }; // Adjust based on your product structure
+  weight: number;
+  dimensions: { width: number; height: number; depth: number };
 }
 
-// Initial state without loading from localStorage
+// Ensure `initialState.items` is always initialized as an empty array
 const initialState = {
-  items: [] as CartItem[], // Start with an empty cart
+  items: [] as CartItem[],  // Ensure items is always an array
 };
 
 const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState,  // Always ensure state is properly initialized
   reducers: {
     setCartFromLocalStorage(state, action: PayloadAction<CartItem[]>) {
-      state.items = action.payload; // Set the cart items from localStorage
+      state.items = action.payload || [];  // Safely assign the payload to state.items
     },
     addToCart(state, action: PayloadAction<CartItem>) {
+      // Ensure state.items is initialized correctly before attempting to access it
+      if (!state.items) state.items = [];
+
       const existingItem = state.items.find(item => item.id === action.payload.id);
 
       if (existingItem) {
@@ -37,32 +40,47 @@ const cartSlice = createSlice({
         state.items.push(action.payload);
       }
 
-      // Save the updated cart to local storage
-      localStorage.setItem('cart', JSON.stringify(state.items));
+      // Save updated cart to localStorage
+      localStorage.setItem('cartItems', JSON.stringify(state.items));
     },
     removeFromCart(state, action: PayloadAction<{ id: string }>) {
       state.items = state.items.filter(item => item.id !== action.payload.id);
-      
-      // Save the updated cart to local storage
-      localStorage.setItem('cart', JSON.stringify(state.items));
+      localStorage.setItem('cartItems', JSON.stringify(state.items));
     },
+    updateQuantity(state, action: PayloadAction<{ id: string, operation: 'increase' | 'decrease' }>) {
+      const existingItem = state.items.find(item => item.id === action.payload.id);
+      
+      if (existingItem) {
+        if (action.payload.operation === 'increase') {
+          existingItem.quantity += 1;
+        } else if (action.payload.operation === 'decrease' && existingItem.quantity > 1) {
+          existingItem.quantity -= 1;
+        }
+      }
+
+      localStorage.setItem('cartItems', JSON.stringify(state.items));
+    },
+    emptyCart(state) {
+      state.items = [];  // Empty the cart
+      localStorage.setItem('cartItems', JSON.stringify(state.items));
+    }
   },
 });
 
-// Load cart items from local storage on client side
 const loadCartFromLocalStorage = () => {
   if (typeof window !== 'undefined') {
-    const savedCart = localStorage.getItem('cart');
+    const savedCart = localStorage.getItem('cartItems');
     return savedCart ? JSON.parse(savedCart) : [];
   }
   return [];
 };
 
-// This action can be dispatched from a component to set the cart items after initial rendering
+import { AppDispatch } from './store'; // Ensure you import the correct type for dispatch
+
 export const loadCart = () => (dispatch: AppDispatch) => {
   const cartItems = loadCartFromLocalStorage();
   dispatch(cartSlice.actions.setCartFromLocalStorage(cartItems));
 };
 
-export const { addToCart, removeFromCart, setCartFromLocalStorage } = cartSlice.actions;
+export const { addToCart, removeFromCart, setCartFromLocalStorage, updateQuantity, emptyCart } = cartSlice.actions;
 export default cartSlice.reducer;

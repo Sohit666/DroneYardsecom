@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from 'next/image';
-import Logo from '../Assets/logo.png';
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Image from "next/image";
+import Logo from "../Assets/logo.png";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,17 +50,17 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/">
-                <Image 
-                  className="h-30 w-30 object-contain" 
-                  src={Logo} 
-                  alt="Logo" 
-                  width={160} 
+                <Image
+                  className="h-30 w-30 object-contain"
+                  src={Logo}
+                  alt="Logo"
+                  width={160}
                   height={100}
                 />
               </Link>
             </div>
 
-            {/* Links */}
+            {/* Desktop Links */}
             <div className="hidden md:flex space-x-4 ml-10">
               <Link href="/" className="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">
                 Home
@@ -84,6 +84,12 @@ const Navbar = () => {
                     </Link>
                     <Link href="/pages/Services/license" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       License
+                    </Link>
+                    <Link href="/pages/Services/license" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Arial-Services
+                    </Link>
+                    <Link href="/pages/Services/license" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Photography
                     </Link>
                     <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       Customizable Drone
@@ -112,7 +118,7 @@ const Navbar = () => {
                       Frames
                     </Link>
                     <Link href="/pages/products/propiler" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                    Propellers
+                      Propellers
                     </Link>
                     <Link href="/pages/products/fc-chips" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       Fc & Chips
@@ -129,8 +135,15 @@ const Navbar = () => {
                     <Link href="/pages/products/accessory" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       Accessories
                     </Link>
+                    <Link href="/pages/products/goggles" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Goggles
+                    </Link>
+                    <Link href="/pages/products/cameras" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                      Cameras
+                    </Link>
+                    
                     <Link href="/pages/products/radioAntenna" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                      Radio Store
+                      Antennas
                     </Link>
                   </div>
                 )}
@@ -145,13 +158,12 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Login Button with Clerk functionality */}
+          {/* Desktop Cart Icon & Login */}
           <div className="hidden md:flex items-center">
-            <div  className=" cursor-pointer mx-5" >
+            <div className="cursor-pointer mx-5">
               <Link href="/pages/checkout">
-              <ShoppingCartIcon />
+                <ShoppingCartIcon />
               </Link>
-              
             </div>
 
             <SignedOut>
@@ -166,7 +178,7 @@ const Navbar = () => {
             </SignedIn>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Button */}
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -247,7 +259,7 @@ const Navbar = () => {
                     Frames
                   </Link>
                   <Link href="/pages/products/propiler" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                    Propilers
+                    Propellers
                   </Link>
                   <Link href="/pages/products/fc-chips" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                     Fc & Chips
@@ -256,7 +268,7 @@ const Navbar = () => {
                     Batteries
                   </Link>
                   <Link href="/pages/products/ele" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
-                    Accessories
+                    Electronics
                   </Link>
                   <Link href="/pages/products/controllers" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                     Controllers
@@ -274,8 +286,10 @@ const Navbar = () => {
 
             {/* Cart Icon and Login for Mobile */}
             <div className="flex items-center justify-between mt-4 px-2">
-              <div className=" cursor-pointer">
-                <ShoppingCartIcon />
+              <div className="cursor-pointer">
+                <Link href="/pages/checkout">
+                  <ShoppingCartIcon />
+                </Link>
               </div>
               <div>
                 <SignedOut>
