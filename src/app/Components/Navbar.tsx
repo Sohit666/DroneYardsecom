@@ -235,6 +235,12 @@ const Navbar = () => {
                   <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                     Customizable Drone
                   </Link>
+                  <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Arial-Service
+                  </Link>
+                  <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Photography
+                  </Link>
                 </div>
               )}
             </div>
@@ -272,6 +278,15 @@ const Navbar = () => {
                   </Link>
                   <Link href="/pages/products/controllers" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                     Controllers
+                  </Link>
+                  <Link href="/pages/products/radioAntenna" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Antennas
+                  </Link>
+                  <Link href="/pages/products/goggles" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Goggles
+                  </Link>
+                  <Link href="/pages/products/cameras" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    Cameras
                   </Link>
                 </div>
               )}
