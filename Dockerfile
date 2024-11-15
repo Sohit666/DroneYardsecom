@@ -1,25 +1,23 @@
-# Use the official Node.js image as the base image
-FROM node:18-alpine AS base
+# Use Node.js 18 as the base image
+FROM node:18
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Install dependencies only when needed
+# Copy package.json and package-lock.json to the container
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-# Copy the Next.js application code
+# Copy the rest of the project files to the container
 COPY . .
-
-# Copy the .env.local file
-# This allows Docker to use the environment variables during build
-COPY .env .env
 
 # Build the Next.js application
 RUN npm run build
 
-# Expose port 3000 for Next.js
+# Expose port 3000 to access the app
 EXPOSE 3000
 
-# Start the Next.js application
+# Start the Next.js app
 CMD ["npm", "start"]
