@@ -6,22 +6,22 @@ const services = [
   {
     title: 'Wide Drone Selection',
     description: 'Find a variety of drones for every need – from FPV to professional cameras.',
-    icon: <FlightTakeoff />, // Using the FlightTakeoff icon
+    icon: <FlightTakeoff />, 
   },
   {
     title: 'High-Quality Parts',
     description: 'Get the best drone parts and accessories for performance and durability.',
-    icon: <Build />, // Using the Build icon
+    icon: <Build />, 
   },
   {
     title: 'Affordable Pricing',
     description: 'Competitive pricing to make high-end drones and parts accessible to everyone.',
-    icon: <ShoppingCart />, // Using the ShoppingCart icon
+    icon: <ShoppingCart />, 
   },
   {
     title: 'Expert Support',
     description: 'Consult with drone experts for advice on the right gear or troubleshooting.',
-    icon: <SupportAgent />, // Using the SupportAgent icon
+    icon: <SupportAgent />, 
   },
 ];
 
@@ -29,8 +29,8 @@ const ServiceCards = () => {
   return (
     <Box
       sx={{
-        backgroundColor: 'white', // Change background color to black
-        color: '#fff', // Change text color to white
+        backgroundColor: 'white',
+        color: '#fff', 
         padding: '20px',
         marginTop: '20px',
       }}
@@ -44,18 +44,18 @@ const ServiceCards = () => {
                 textAlign: 'center',
                 borderRadius: '8px',
                 boxShadow: 3,
-                backgroundColor: '#333', // Dark background for the Paper
-                color: '#fff', // White text for Paper content
+                backgroundColor: '#333', 
+                color: '#fff', 
               }}
             >
               <IconButton sx={{ fontSize: '40px', color: '#fff' }}>
-                {service.icon} {/* Icon rendering */}
+                {service.icon} 
               </IconButton>
               <Typography variant="h6" sx={{ marginTop: '10px' }}>
-                {service.title} {/* Title rendering */}
+                {service.title} 
               </Typography>
               <Typography variant="body2" sx={{ marginTop: '5px',color:"white" }}>
-                {service.description} {/* Description rendering */}
+                {service.description} 
               </Typography>
             </Paper>
           </Grid>

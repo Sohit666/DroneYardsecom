@@ -23,7 +23,7 @@ const segmentData = [
   {
     name: "Aerial Photography",
     description: "Capture stunning aerial images with our drones.",
-    image: '/homepage/moutains.jpg',
+    image: '/homepage/areal.jpg',
     link: "/segments/aerial-photography",
   },
   {

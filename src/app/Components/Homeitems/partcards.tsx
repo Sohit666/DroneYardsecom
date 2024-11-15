@@ -10,7 +10,7 @@ interface Product {
 const productData: Product[] = [
   { image: '/images/product1.png', title: 'Batteries', link: '/pages/products/battery' },
   { image: '/images/product2.png', title: 'Goggles', link: '/pages/products/goggles' },
-  { image: '/images/product3.png', title: 'Drone Equipments', link: '/pages/products/accessory' },
+  { image: '/images/product3.png', title: 'Drone Equipments', link: '/pages/pr/accessory' },
   { image: '/images/product4.png', title: 'Propellers', link: '/pages/products/propiler' },
   { image: '/images/product5.png', title: 'Radios', link: '/pages/products/radioAntenna' },
   { image: '/images/product6.png', title: 'Motors', link: '/pages/products/motors' },
