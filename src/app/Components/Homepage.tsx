@@ -24,19 +24,19 @@ const segmentData = [
     name: "Aerial Photography",
     description: "Capture stunning aerial images with our drones.",
     image: '/homepage/areal.jpg',
-    link: "/segments/aerial-photography",
+    link: "/pages/Services/photography",
   },
   {
     name: "Drone Racing",
     description: "Experience the thrill of racing drones.",
     image: '/homepage/moutains.jpg',
-    link: "/segments/drone-racing",
+    link: "/pages/Services/customizeable",
   },
   {
-    name: "Agricultural Monitoring",
+    name: "Aerial Sevices",
     description: "Use drones for precision agriculture.",
     image: '/homepage/moutains.jpg',
-    link: "/segments/agricultural-monitoring",
+    link: "/pages/Services/arieal",
   },
 ];
 

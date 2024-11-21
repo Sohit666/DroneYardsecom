@@ -85,10 +85,10 @@ const Navbar = () => {
                     <Link href="/pages/Services/license" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       License
                     </Link>
-                    <Link href="/pages/Services/license" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    <Link href="/pages/Services/arieal" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       Arial-Services
                     </Link>
-                    <Link href="/pages/Services/license" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                    <Link href="/pages/Services/photography" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                       Photography
                     </Link>
                     <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
@@ -205,6 +205,8 @@ const Navbar = () => {
         </div>
       </div>
 
+
+
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden">
@@ -235,10 +237,10 @@ const Navbar = () => {
                   <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                     Customizable Drone
                   </Link>
-                  <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                  <Link href="/pages/Services/arieal" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                     Arial-Service
                   </Link>
-                  <Link href="/pages/Services/customizeable" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                  <Link href="/pages/Services/photography" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">
                     Photography
                   </Link>
                 </div>

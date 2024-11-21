@@ -212,11 +212,29 @@ const ContactUs = () => {
       <Faq />
 
       <div className="address-section">
-        <h2>Our Office</h2>
-        <p>Metro Station, D-53, Kaushambi Central Park, near Kaushambi, Anand Vihar, Ghaziabad, Uttar Pradesh 201010</p>
-        <p>Email: info.droneyards@gmail.com</p>
-        <p>Phone: +123-456-789</p>
-      </div>
+  <h2>Our Office</h2>
+  <p>
+    <a 
+      href="https://maps.app.goo.gl/R2FhZV4paf7Jbzpt5" 
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
+      Metro Station, D-53, Kaushambi Central Park, near Kaushambi, Anand Vihar, Ghaziabad, Uttar Pradesh 201010
+    </a>
+  </p>
+  <p>
+    Email: 
+    <a href="mailto:info.droneyards@gmail.com">
+      info.droneyards@gmail.com
+    </a>
+  </p>
+  <p>
+    Phone: 
+    <a href="tel:+918506969051">+91 8506969051</a> |   
+    <a href="tel:+918506969140">+91 8506969140</a>
+  </p>
+</div>
+
 
       {/* Modal */}
       <Modal
