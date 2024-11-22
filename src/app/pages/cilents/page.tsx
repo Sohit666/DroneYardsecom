@@ -30,6 +30,30 @@ const clients = [
     description: "Description for Client D",
     logoUrl: "https://via.placeholder.com/150",
   },
+  {
+    id: 5,
+    name: "Client D",
+    description: "Description for Client D",
+    logoUrl: "https://via.placeholder.com/150",
+  },
+  {
+    id: 6,
+    name: "Client D",
+    description: "Description for Client D",
+    logoUrl: "https://via.placeholder.com/150",
+  },
+  {
+    id: 7,
+    name: "Client D",
+    description: "Description for Client D",
+    logoUrl: "https://via.placeholder.com/150",
+  },
+  {
+    id: 8,
+    name: "Client D",
+    description: "Description for Client D",
+    logoUrl: "https://via.placeholder.com/150",
+  },
 ];
 
 // Styled Components
