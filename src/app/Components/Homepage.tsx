@@ -21,24 +21,25 @@ interface Product {
 
 const segmentData = [
   {
-    name: "Aerial Photography",
-    description: "Capture stunning aerial images with our drones.",
-    image: '/homepage/moutains.jpg',
+    name: "Aerial Photography & Videography",
+    description: "Capture breathtaking aerial visuals, perfect for real estate, events, and promotional content.",
+    image: '/homepage/photography.png',
     link: "/pages/Services/photography",
   },
   {
-    name: "Drone Racing",
-    description: "Experience the thrill of racing drones.",
-    image: '/homepage/moutains.jpg',
+    name: "High-Performance Racing Drones",
+    description: "Feel the adrenaline rush with our customizable racing drones, built for speed and agility.",
+    image: '/homepage/Racing.png',
     link: "/pages/Services/customizeable",
   },
   {
-    name: "Aerial Sevices",
-    description: "Use drones for precision agriculture.",
-    image: '/homepage/moutains.jpg',
+    name: "Precision Aerial Services",
+    description: "Leverage drones for advanced applications like precision agriculture, inspections, and surveying.",
+    image: '/homepage/arieal.png',
     link: "/pages/Services/arieal",
   },
 ];
+
 
 const featuredImages = [
   dimg.src,

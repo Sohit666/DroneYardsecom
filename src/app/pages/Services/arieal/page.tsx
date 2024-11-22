@@ -20,32 +20,32 @@ const AerialServicesPage = () => {
         {
           title: 'Real Estate Drone Services',
           description: 'Showcase properties like never before with breathtaking aerial footage and high-resolution photographs. Ideal for luxury homes, commercial spaces, and expansive estates, these visuals create a compelling narrative that attracts potential buyers and renters.',
-          image: '/services/real-estate.jpg',
+          image: '/about/21.png',
         },
         {
           title: 'Construction Site Monitoring',
           description: 'Streamline construction projects with precise aerial monitoring and documentation. From progress tracking to safety assessments, drone footage provides a bird’s-eye view that improves decision-making and keeps stakeholders informed.',
-          image: '/services/construction.jpg',
+          image: '/about/22.png',
         },
         {
           title: 'Event Coverage',
           description: 'Capture the energy and emotion of any event from unique and dynamic aerial angles. Whether it’s a wedding, festival, or corporate gathering, our drones ensure your special moments are unforgettable and visually stunning.',
-          image: '/services/events.jpg',
+          image: '/about/23.png',
         },
         {
           title: 'Survey and Mapping',
           description: 'Transform surveying with cutting-edge aerial technology. Obtain accurate topographical data, generate 3D maps, and optimize workflows for industries like real estate, mining, and environmental conservation.',
-          image: '/services/survey.jpg',
+          image: '/about/24.png',
         },
         {
           title: 'Agricultural Monitoring',
           description: 'Empower your agricultural operations with drone-powered insights. Monitor crop health, detect irrigation issues, and analyze field conditions with high-resolution aerial imagery to improve yield and reduce costs.',
-          image: '/services/agriculture.jpg',
+          image: '/about/25.png',
         },
         {
           title: 'Advertising and Marketing',
           description: 'Elevate your brand’s story with cinematic aerial visuals that captivate audiences. Perfect for commercials, promotional videos, and social media campaigns, our services make your content stand out in the competitive market.',
-          image: '/services/marketing.jpg',
+          image: '/about/26.png',
         },
       ];
       

@@ -8,7 +8,7 @@ const programs = [
   {
     title: 'DJI Repair & Service Training',
     description: 'Gain hands-on experience in repairing and servicing DJI drones. This program covers troubleshooting, parts replacement, and maintenance techniques for various DJI models, enabling you to become an expert in drone repair.',
-    image: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    image: '/about/11.png',
     onClick: () => {
       alert('You clicked on DJI Repair & Service Training!');
     }
@@ -16,7 +16,7 @@ const programs = [
   {
     title: 'Wander & Fly FPV Tour',
     description: 'Experience the thrill of flying FPV (First-Person View) drones through stunning landscapes. This immersive tour combines adventure and aerial photography, allowing you to explore the world from a drone’s perspective while capturing breathtaking footage.',
-    image: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    image: '/about/12.png',
     onClick: () => {
       alert('You clicked on Wander & Fly FPV Tour!');
     }
@@ -24,7 +24,7 @@ const programs = [
   {
     title: 'FPV Building & Flying Training',
     description: 'Learn how to build and fly your own FPV drone in this comprehensive course. From assembling the drone frame to fine-tuning flight settings, this program equips you with the skills to fly drones in a fully immersive FPV experience.',
-    image: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    image: '/about/13.png',
     onClick: () => {
       alert('You clicked on FPV Building & Flying Training!');
     }
@@ -32,7 +32,7 @@ const programs = [
   {
     title: 'DGCA Licence Program',
     description: 'Become a certified drone operator in India with the DGCA License Program. This course prepares you for the DGCA exam, ensuring that you meet legal and operational standards for flying drones commercially in India.',
-    image: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    image: '/about/14.png',
     onClick: () => {
       alert('You clicked on DGCA Licence Program!');
     }
@@ -40,7 +40,7 @@ const programs = [
   {
     title: 'DJI Flying Training',
     description: 'Take your drone flying skills to the next level with expert-led DJI flying training. Learn advanced flight techniques, camera operations, and aerial maneuvers, and gain confidence in flying DJI drones in various environments.',
-    image: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    image: '/about/15.png',
     onClick: () => {
       alert('You clicked on DJI Flying Training!');
     }

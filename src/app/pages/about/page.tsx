@@ -4,7 +4,6 @@ import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
-import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import AcUnitTwoToneIcon from '@mui/icons-material/AcUnitTwoTone';
 import Box from '@mui/material/Box'; // Import Box from MUI for layout
 import Button from '@mui/material/Button'; // Import Button from MUI
@@ -37,21 +36,27 @@ const videos = [
 
 const cardsData = [
   {
-    title: 'Yosemite National Park',
-    location: 'California, USA',
-    imageUrl: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    title: 'FPV & DJI Training Program',
+    location: 'Master the skills of piloting drones with our expert-led training programs.',
+    imageUrl: '/about/1.png',
   },
   {
-    title: 'Grand Canyon',
-    location: 'Arizona, USA',
-    imageUrl: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    title: 'Precision Aerial Services',
+    location: 'Enhance your operations with drones for inspections, agriculture, and more.',
+    imageUrl: '/about/2.png',
   },
   {
-    title: 'Zion National Park',
-    location: 'Utah, USA',
-    imageUrl: 'https://images.unsplash.com/photo-1542773998-9325f0a098d7?auto=format&fit=crop&w=320',
+    title: 'Aerial Photography & Shoots',
+    location: 'Capture stunning visuals for real estate, events, and creative projects.',
+    imageUrl: '/about/3.png',
+  },
+  {
+    title: 'Customizable FPV Drones',
+    location: 'Experience tailored FPV drones for racing, freestyle, or professional needs.',
+    imageUrl: '/about/4.png',
   },
 ];
+
 
 const statsData = [
   { value: 3500, label: 'Happy Customers' },
@@ -292,7 +297,7 @@ const About = () => {
       <Grid container spacing={4} justifyContent="center">
         {cardsData.map((card, index) => (
           <Grid item key={index} xs={12} sm={4}>
-            <Card sx={{ minHeight: '280px', width: '100%', marginTop: '20px' }}>
+            <Card sx={{ minHeight: '300px', width: '100%', marginTop: '20px' }}>
               <CardCover>
                 <img
                   src={card.imageUrl}
@@ -311,7 +316,7 @@ const About = () => {
                   {card.title}
                 </Typography>
                 <Typography
-                  startDecorator={<LocationOnRoundedIcon />}
+                  
                   textColor="neutral.300"
                 >
                   {card.location}
