@@ -1,16 +1,16 @@
 'use client';
 import React from 'react';
 import { Container, Typography, Button, Grid, Card, CardMedia, CardContent } from '@mui/material';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled} from '@mui/material/styles';
 
-const GradientText = styled(Typography)(({ theme }) => ({
+const GradientText = styled(Typography)(({  }) => ({
   background: 'linear-gradient(90deg, #FF6F61, #D84315)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   fontWeight: 'bold',
 }));
 
-const EnrollButton = styled(Button)(({ theme }) => ({
+const EnrollButton = styled(Button)(({  }) => ({
   backgroundColor: 'black',
   color: 'white',
   padding: '15px',
@@ -30,7 +30,7 @@ const AnimatedCard = styled(Card)(({ theme }) => ({
 }));
 
 const LicensePage: React.FC = () => {
-  const theme = useTheme();
+
 
   const handleEnroll = () => {
     alert('Enrollment button clicked!');

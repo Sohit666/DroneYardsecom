@@ -1,5 +1,4 @@
-// pages/photography.tsx
-"use client"
+"use client";
 
 import { Box, Button, Container, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
@@ -33,7 +32,6 @@ const PhotographyPage = () => {
     { src: '/homepage/areal.jpg' },
     { src: '/homepage/areal.jpg' },
     { src: '/homepage/areal.jpg' },
-    
   ];
 
   return (
@@ -49,6 +47,7 @@ const PhotographyPage = () => {
           animation: `${fadeIn} 1s ease-in-out`,
           animationDelay: '0.2s',
           animationFillMode: 'both',
+          color: "black",
         }}
       >
         Droneyards Photography
@@ -57,12 +56,18 @@ const PhotographyPage = () => {
         variant="body1"
         textAlign="center"
         mb={5}
-        sx={{ opacity: 0, animation: `${fadeIn} 1s ease-in-out`, animationDelay: '0.4s', animationFillMode: 'both' }}
+        sx={{
+          opacity: 0,
+          animation: `${fadeIn} 1s ease-in-out`,
+          animationDelay: '0.4s',
+          animationFillMode: 'both',
+          color: "black",
+        }}
       >
-        "Experience the world from breathtaking new heights with our professional drone photography services.  
-Uncover stunning landscapes, vibrant cityscapes, and unique perspectives that only drones can capture.  
-Whether for personal projects, real estate, events, or creative campaigns, we bring your vision to life with precision and artistry.  
-Discover the beauty of the world from above, where every shot tells a story."
+        &quot;Experience the world from breathtaking new heights with our professional drone photography services.&quot;  
+        Uncover stunning landscapes, vibrant cityscapes, and unique perspectives that only drones can capture.  
+        Whether for personal projects, real estate, events, or creative campaigns, we bring your vision to life with precision and artistry.  
+        Discover the beauty of the world from above, where every shot tells a story.
       </Typography>
 
       {/* Video Gallery */}
@@ -72,7 +77,7 @@ Discover the beauty of the world from above, where every shot tells a story."
         gutterBottom
         fontWeight="bold"
         textAlign="center"
-        sx={{ animation: `${fadeIn} 1s ease-in-out`, animationDelay: '0.6s', animationFillMode: 'both' }}
+        sx={{ animation: `${fadeIn} 1s ease-in-out`, animationDelay: '0.6s', animationFillMode: 'both', color: "black" }}
       >
         Some of our video shoots
       </Typography>
@@ -110,7 +115,7 @@ Discover the beauty of the world from above, where every shot tells a story."
                 style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '8px' }}
               />
             </Box>
-            <Typography variant="h6" component="h2" mt={2} fontWeight="bold" textAlign="center">
+            <Typography variant="h6" component="h2" mt={2} fontWeight="bold" textAlign="center" sx={{ color: "black" }}>
               {video.title}
             </Typography>
           </Grid>
@@ -124,7 +129,7 @@ Discover the beauty of the world from above, where every shot tells a story."
         gutterBottom
         fontWeight="bold"
         textAlign="center"
-        sx={{ animation: `${fadeIn} 1s ease-in-out`, animationDelay: '1.2s', animationFillMode: 'both' }}
+        sx={{ animation: `${fadeIn} 1s ease-in-out`, animationDelay: '1.2s', animationFillMode: 'both', color: "black" }}
       >
         Photo Gallery
       </Typography>

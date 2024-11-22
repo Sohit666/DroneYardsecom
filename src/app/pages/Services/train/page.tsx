@@ -1,7 +1,7 @@
 "use client";
-import { useState } from 'react';
+
 import Carousel from '../../../Components/Homeitems/Carousel';
-import { Container, Typography, Grid, Card, CardMedia, CardContent, Button, Box, Fade, Zoom } from '@mui/material';
+import { Container, Typography, Grid, Card, CardMedia, CardContent, Button, Box, Zoom } from '@mui/material';
 import EmblaCarousel from '../../../Components/embla';
 
 const programs = [
@@ -68,7 +68,7 @@ const DroneyardsSection = () => (
 );
 
 const TrainingPrograms = () => {
-  const [hover, setHover] = useState(false);
+ 
 
   return (
     <>

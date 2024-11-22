@@ -59,7 +59,7 @@ const AerialServicesPage = () => {
         gutterBottom
         textAlign="center"
         fontWeight="bold"
-        sx={{ animation: `${fadeInUp} 1s ease-in-out` }}
+        sx={{ animation: `${fadeInUp} 1s ease-in-out` , color :"black"}}
       >
         Aerial Services by Droneyards
       </Typography>
@@ -67,7 +67,7 @@ const AerialServicesPage = () => {
         variant="body1"
         textAlign="center"
         mb={5}
-        sx={{ animation: `${fadeInUp} 1s ease-in-out`, animationDelay: '0.1s' }}
+        sx={{ animation: `${fadeInUp} 1s ease-in-out`, animationDelay: '0.1s' , color :"black" }}
       >
         Experience the versatility of drone technology across various industries.
       </Typography>
