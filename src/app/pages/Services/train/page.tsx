@@ -4,18 +4,25 @@ import Carousel from '../../../Components/Homeitems/Carousel';
 import { Container, Typography, Grid, Card, CardMedia, CardContent, Button, Box, Zoom } from '@mui/material';
 import EmblaCarousel from '../../../Components/embla';
 
+
+
+
 const programs = [
   {
     title: 'DJI Repair & Service Training',
     description: 'Gain hands-on experience in repairing and servicing DJI drones. This program covers troubleshooting, parts replacement, and maintenance techniques for various DJI models, enabling you to become an expert in drone repair.',
     image: '/about/11.png',
     onClick: () => {
-      alert('You clicked on DJI Repair & Service Training!');
+      const link = document.createElement('a');
+      link.href = '/training/DroneTraining.pdf'; // Replace with the actual URL or path to your PDF file
+      link.download = 'FPV_Building_and_Flying_Training.pdf'; // The name of the file when downloaded
+      link.click();
     }
+    
   },
   {
     title: 'Wander & Fly FPV Tour',
-    description: 'Experience the thrill of flying FPV (First-Person View) drones through stunning landscapes. This immersive tour combines adventure and aerial photography, allowing you to explore the world from a drone’s perspective while capturing breathtaking footage.',
+    description: 'Experi`ence the thrill of flying FPV (First-Person View) drones through stunning landscapes. This immersive tour combines adventure and aerial photography, allowing you to explore the world from a drone’s perspective while capturing breathtaking footage.',
     image: '/about/12.png',
     onClick: () => {
       alert('You clicked on Wander & Fly FPV Tour!');
