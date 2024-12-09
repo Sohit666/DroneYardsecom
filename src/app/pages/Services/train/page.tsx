@@ -1,6 +1,6 @@
 "use client";
 
-import Carousel from '../../../Components/Homeitems/Carousel';
+
 import { Container, Typography, Grid, Card, CardMedia, CardContent, Button, Box, Zoom } from '@mui/material';
 import EmblaCarousel from '../../../Components/embla';
 
@@ -8,6 +8,18 @@ import EmblaCarousel from '../../../Components/embla';
 
 
 const programs = [
+  {
+    title: "Launch Your Career with NASSCOM's Drone Pilot Training!",
+    description: 'Enroll now for the 7-day program at HARTRON Centre, Haryana, and earn your DGCA-approved Drone Pilot License!',
+    image: '/about/222.jpg',
+    onClick: () => {
+      const link = document.createElement('a');
+      link.href = '/training/DroneTraining.pdf'; // Replace with the actual URL or path to your PDF file
+      link.download = 'NASSCOM-TRAINING-PROGRAM.pdf'; // The name of the file when downloaded
+      link.click();
+    }
+    
+  },
   {
     title: 'DJI Repair & Service Training',
     description: 'Gain hands-on experience in repairing and servicing DJI drones. This program covers troubleshooting, parts replacement, and maintenance techniques for various DJI models, enabling you to become an expert in drone repair.',
@@ -79,7 +91,7 @@ const TrainingPrograms = () => {
 
   return (
     <>
-      <Carousel />
+     
       <h1 style={{
         color: 'black', fontSize: '2.5rem', marginTop: '20px', textAlign: 'center', fontWeight: 'bold',
         letterSpacing: '2px'
